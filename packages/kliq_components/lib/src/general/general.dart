@@ -1,3 +1,4 @@
-export 'buttons/kliq_buttons.dart';
-export 'input_fields/kliq_input.dart';
+export 'buttons/buttons.dart';
+export 'custom_painters/custom_painters.dart';
+export 'input_fields/input_fields.dart';
 export 'picture.dart';

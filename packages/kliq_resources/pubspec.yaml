@@ -27,6 +27,8 @@ flutter:
 
   assets:
     - assets/nav-bin/
+    - assets/social-bin/
+    - assets/icons-bin/
 
   # - assets/images-bin/
   # - assets/header-bin/

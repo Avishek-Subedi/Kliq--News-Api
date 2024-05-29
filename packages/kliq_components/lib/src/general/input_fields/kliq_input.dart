@@ -24,7 +24,7 @@ class _KliqTextFieldState extends State<KliqTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: textTheme(context).bodySmall!.copyWith(color: Colors.white),
+      style: textTheme(context).bodySmall!.copyWith(),
       controller: widget.controller,
       validator: widget.validator,
       obscureText: widget.isPassword ? true : false,
@@ -34,35 +34,29 @@ class _KliqTextFieldState extends State<KliqTextField> {
           focusedBorder: const UnderlineInputBorder(
             borderSide: BorderSide(
               style: BorderStyle.solid,
-              color: Colors.white,
             ),
           ),
           focusedErrorBorder: const UnderlineInputBorder(
             borderSide: BorderSide(
               style: BorderStyle.solid,
-              color: Colors.white,
             ),
           ),
           border: const UnderlineInputBorder(
             borderSide: BorderSide(
               style: BorderStyle.solid,
-              color: Colors.white,
             ),
           ),
           enabledBorder: const UnderlineInputBorder(
             borderSide: BorderSide(
               style: BorderStyle.solid,
-              color: Colors.white,
             ),
           ),
           errorBorder: const UnderlineInputBorder(
             borderSide: BorderSide(
               style: BorderStyle.solid,
-              color: Colors.white,
             ),
           ),
           errorStyle: textTheme(context).bodyMedium?.copyWith(fontSize: 8)),
-      cursorColor: Colors.white,
     );
   }
 }

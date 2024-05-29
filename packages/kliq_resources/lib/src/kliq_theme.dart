@@ -60,63 +60,60 @@ class KliqThemeConfig {
 
     //for text theme
     final customTextTheme = TextTheme(
-      displayLarge: GoogleFonts.plusJakartaSans(
+      displayLarge: GoogleFonts.poppins(
         fontSize: 72,
-        color: const Color.fromARGB(255, 0, 0, 0),
+        // color: Color.fromARGB(255, 255, 248, 248),
       ),
-      displayMedium: GoogleFonts.plusJakartaSans(
+      displayMedium: GoogleFonts.poppins(
         fontSize: 50,
         // color: const Color.fromARGB(255, 0, 0, 0),
       ),
-      displaySmall: GoogleFonts.plusJakartaSans(
+      displaySmall: GoogleFonts.poppins(
         fontSize: 40,
         // color: const Color.fromARGB(255, 0, 0, 0),
       ),
-      headlineLarge: GoogleFonts.plusJakartaSans(
+      headlineLarge: GoogleFonts.poppins(
         fontSize: 32,
         // color: const Color.fromARGB(255, 0, 0, 0),
       ),
-      headlineMedium: GoogleFonts.plusJakartaSans(
+      headlineMedium: GoogleFonts.poppins(
         fontSize: 22,
         // color: const Color.fromARGB(255, 0, 0, 0),
       ),
-      headlineSmall: GoogleFonts.plusJakartaSans(
+      headlineSmall: GoogleFonts.poppins(
         fontSize: 20,
         // color: const Color.fromARGB(255, 0, 0, 0),
       ),
-      titleLarge: GoogleFonts.plusJakartaSans(
+      titleLarge: GoogleFonts.poppins(
         fontSize: 18,
         // color: Color(0xff134266),
       ),
-      titleMedium: GoogleFonts.plusJakartaSans(
+      titleMedium: GoogleFonts.poppins(
         fontSize: 16,
         // color: Color(0xFF1B5D90),
       ),
-      titleSmall: GoogleFonts.plusJakartaSans(
+      titleSmall: GoogleFonts.poppins(
         fontSize: 14,
         // color: Color(0xff134266),
       ),
-      bodyLarge: GoogleFonts.plusJakartaSans(
-        fontSize: 18,
-        // color: const Color.fromARGB(255, 0, 0, 0),
-      ),
-      bodySmall: GoogleFonts.plusJakartaSans(
-        fontSize: 14,
+      bodyLarge: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.bold
+          // color: const Color.fromARGB(255, 0, 0, 0),
+          ),
+      bodySmall: GoogleFonts.poppins(
+        fontSize: 8,
         // color: Colors.blue,
       ),
-      bodyMedium: GoogleFonts.plusJakartaSans(
+      bodyMedium: GoogleFonts.poppins(
         fontSize: 16,
         // color: Color(0xFF606060),
       ),
-      labelSmall: GoogleFonts.plusJakartaSans(
+      labelSmall: GoogleFonts.poppins(
         fontSize: 14,
       ),
-      labelMedium: GoogleFonts.plusJakartaSans(
+      labelMedium: GoogleFonts.poppins(
         fontSize: 16,
       ),
-      labelLarge: GoogleFonts.plusJakartaSans(
-        fontSize: 18,
-      ),
+      labelLarge: GoogleFonts.poppins(fontSize: 18, color: Colors.white),
     );
 
     light = ThemeData(
@@ -153,14 +150,13 @@ ColorScheme _lightColorScheme = ColorScheme.light(
   error: Color(0xffB42318),
   // On Colors
   onPrimary: Color(0XFFFFFFFF),
+
   onSecondary: Color(0xff331F00),
   onTertiary: Color(0XFFFFFFFF),
   onError: Color(0xffffffff),
   // Container Colors
   primaryContainer: Color(0XFF9dbbe6),
-
   secondaryContainer: Color(0xffE6C89D),
-
   tertiaryContainer: Color(0xffbce6be),
   errorContainer: Color(0xffE4E7EC),
 
@@ -172,9 +168,9 @@ ColorScheme _lightColorScheme = ColorScheme.light(
   onTertiaryContainer: Color(0xff163317),
   onErrorContainer: Color(0xff7A271A),
   // Neutral Colors
-  surface: Color(0xffE3EDF7),
+  surface: Color(0xffF6F8FA),
   surfaceTint: Color(0xffDCE8F5),
-  onSurface: Color(0xff191C1D),
+  onSurface: Color.fromARGB(255, 228, 232, 234),
   onSurfaceVariant: Color(0xff757B80),
   surfaceContainerHighest: Color(0xffdce4e8),
   outline: Color(0xff9EA3A6),
@@ -183,8 +179,8 @@ ColorScheme _lightColorScheme = ColorScheme.light(
   inverseSurface: Color(0xff2E3032),
   onInverseSurface: Color(0xffE0EAF6),
   inversePrimary: Color(0xff5FD4FD),
-  scrim: Colors.black,
-  shadow: Colors.black,
+  scrim: Colors.white,
+  shadow: Color.fromARGB(255, 226, 224, 224),
 );
 
 const ColorScheme _darkColorScheme = ColorScheme.dark(

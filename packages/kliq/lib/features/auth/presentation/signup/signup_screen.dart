@@ -4,23 +4,22 @@ import 'package:go_router/go_router.dart';
 import 'package:kliq/core/constants/enums.dart';
 import 'package:kliq/features/auth/controllers/auth_controller.dart' as auth;
 import 'package:kliq/app_setup/controller/base_state.dart';
-import 'package:kliq/features/auth/presentation/widgets/login_header.dart';
 import 'package:kliq/features/auth/presentation/widgets/social_container.dart';
 import 'package:kliq_components/kliq_componenets.dart';
 import 'package:kliq_resources/kliq_resources.dart';
 
-class LoginScreen extends ConsumerStatefulWidget {
-  const LoginScreen({super.key});
+class SignupScreen extends ConsumerStatefulWidget {
+  const SignupScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _LoginScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _SignupScreenState();
 }
 
 final TextEditingController _emailController = TextEditingController();
 final TextEditingController _passwordController = TextEditingController();
 final _formKey = GlobalKey<FormState>();
 
-class _LoginScreenState extends ConsumerState<LoginScreen> {
+class _SignupScreenState extends ConsumerState<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     // ref.listen(auth.loginControllerProvider, (prev, next) {
@@ -57,7 +56,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               ClipPath(
                 clipper: CustomClipPathDown(),
                 child: Container(
-                  height: screenHeight(context) / 1.5,
+                  height: screenHeight(context) / 1.8,
                   color: colorScheme(context).primary,
                   padding: EdgeInsets.symmetric(
                       horizontal: 18, vertical: screenHeight(context) / 18),
@@ -80,9 +79,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           children: [
                             Text(
                               "Login",
-                              style: textTheme(context).bodyLarge!,
+                              style: textTheme(context)
+                                  .bodyLarge!
+                                  .copyWith(fontWeight: FontWeight.w100),
                             ),
-                            const SizedBox(height: 32),
+                            const SizedBox(height: 7),
                             Text(
                               "Email",
                               style: textTheme(context).bodyMedium!.copyWith(
@@ -112,25 +113,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
                               // validator: (value) =>
                               //     FormValidator.passwordValidator(value!),
-                            ),
-                            TextFormField(
-                              style: const TextStyle(
-                                fontSize: 11,
-                                fontWeight: FontWeight.w100,
-                              ),
-                              validator: (value) =>
-                                  FormValidator.passwordValidator(value!),
-                              decoration: const InputDecoration(
-                                isDense: true,
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    style: BorderStyle.solid,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                              cursorColor: Colors.white,
-                            ),
+                            )
                           ],
                         ),
                       )
@@ -152,7 +135,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             final authState0 =
                                 ref.watch(auth.loginControllerProvider);
                             return KliqButton(
-                              label: "Login",
+                              label: "Register",
                               showProgress:
                                   authState0 is BaseLoading ? true : false,
                               ontap: _logIn,
@@ -271,3 +254,27 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 ///
 ///
 
+class LoginHeader extends StatelessWidget {
+  const LoginHeader({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Picture(
+          source: Asset.icons.chat,
+          height: screenHeight(context) / 28,
+        ),
+        SizedBox(height: screenHeight(context) / 70),
+        Text(
+          "Please fill your login details",
+          style: textTheme(context)
+              .bodySmall
+              ?.copyWith(color: Colors.white, fontSize: 8),
+        ),
+      ],
+    );
+  }
+}
