@@ -104,7 +104,7 @@ class KliqThemeConfig {
         // color: Colors.blue,
       ),
       bodyMedium: GoogleFonts.poppins(
-        fontSize: 16,
+        fontSize: 24,
         // color: Color(0xFF606060),
       ),
       labelSmall: GoogleFonts.poppins(
@@ -191,7 +191,7 @@ const ColorScheme _darkColorScheme = ColorScheme.dark(
   // On Colors
   onPrimary: Color(0xff00204c),
   onError: Color(0xff912018),
-  onSecondary: Color(0xff4c2e00),
+  onSecondary: Color.fromARGB(188, 43, 41, 41),
   onTertiary: Color(0xff214c23),
   // Container Colors
   primaryContainer: Color(0xff002b66),

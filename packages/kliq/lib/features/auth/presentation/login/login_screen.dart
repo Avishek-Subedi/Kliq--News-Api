@@ -167,8 +167,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     Text(
                       'or signup with',
                       style: textTheme(context)
-                          .bodySmall
-                          ?.copyWith(color: Colors.black),
+                          .bodyMedium!
+                          .copyWith(color: colorScheme(context).onSecondary),
                     ),
                     const SizedBox(height: 15),
                     SizedBox(
@@ -227,14 +227,15 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         Text(
                           "Don't have an account yet?",
                           style: textTheme(context)
-                              .bodySmall!
-                              .copyWith(color: Colors.black),
+                              .bodyMedium!
+                              .copyWith(color: Colors.black, fontSize: 13),
                         ),
+                        const SizedBox(width: 12),
                         Text(
-                          "SIGNUP",
+                          "Signup",
                           style: textTheme(context).bodyMedium?.copyWith(
                               fontSize: 13,
-                              color: colorScheme(context).surface),
+                              color: colorScheme(context).primary),
                         )
                       ],
                     )
