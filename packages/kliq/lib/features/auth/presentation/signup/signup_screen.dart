@@ -80,17 +80,32 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                           children: [
                             Text(
                               "Login",
-                              style: textTheme(context)
-                                  .bodyLarge!
-                                  .copyWith(fontWeight: FontWeight.w100),
+                              style: textTheme(context).bodyLarge!.copyWith(
+                                  fontWeight: FontWeight.w100,
+                                  color: colorScheme(context).onSecondary),
                             ),
                             const SizedBox(height: 7),
                             Text(
+                              "Full Name",
+                              style: textTheme(context).bodyMedium!.copyWith(
+                                  fontWeight: FontWeight.w200,
+                                  fontSize: 12,
+                                  color: colorScheme(context).onSecondary),
+                            ),
+                            KliqTextField(
+                              controller: _passwordController,
+                              isPassword: false,
+                              onPressed: () {},
+
+                              // validator: (value) =>
+                              //     FormValidator.passwordValidator(value!),
+                            ),
+                            Text(
                               "Email",
                               style: textTheme(context).bodyMedium!.copyWith(
-                                    fontWeight: FontWeight.w200,
-                                    fontSize: 12,
-                                  ),
+                                  fontWeight: FontWeight.w200,
+                                  fontSize: 12,
+                                  color: colorScheme(context).onSecondary),
                             ),
                             KliqTextField(
                               controller: _emailController,
@@ -103,9 +118,9 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                             Text(
                               "Password",
                               style: textTheme(context).bodyMedium!.copyWith(
-                                    fontWeight: FontWeight.w200,
-                                    fontSize: 12,
-                                  ),
+                                  fontWeight: FontWeight.w200,
+                                  fontSize: 12,
+                                  color: colorScheme(context).onSecondary),
                             ),
                             KliqTextField(
                               controller: _passwordController,
@@ -152,7 +167,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                       'or signup with',
                       style: textTheme(context)
                           .bodySmall
-                          ?.copyWith(color: Colors.black),
+                          ?.copyWith(color: colorScheme(context).surface),
                     ),
                     const SizedBox(height: 15),
                     SizedBox(
@@ -209,13 +224,15 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                     Row(
                       children: [
                         Text(
-                          "Don't have an account yet?",
-                          style: textTheme(context)
-                              .bodySmall!
-                              .copyWith(color: Colors.black),
+                          "Already have an account ?",
+                          style: textTheme(context).bodySmall!.copyWith(
+                                color: colorScheme(context).surface,
+                                fontSize: 13,
+                              ),
                         ),
+                        const SizedBox(width: 8),
                         Text(
-                          "SIGNUP",
+                          "Login",
                           style: textTheme(context).bodyMedium?.copyWith(
                               fontSize: 13,
                               color: colorScheme(context).surface),
