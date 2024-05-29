@@ -8,3 +8,6 @@ const String FIRST_INSTALL_BOX = 'hFirstInstalledBox';
 
 // const int HIVE_USER_BOX_ID = 2;
 const String HIVE_USER_BOX = 'hUserBox';
+
+// const int HIVE_USER_BOX_ID = 3;
+const String HIVE_FAVOURITE_BOX = 'hFavouriteBox';
