@@ -9,4 +9,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get description => 'Hebrew description';
+
+  @override
+  String get login => 'Login';
 }

@@ -5,12 +5,13 @@ import 'package:go_router/go_router.dart';
 import 'package:kliq/app_setup/controller/app_state_observer.dart';
 import 'package:kliq/config/error_screen.dart';
 import 'package:kliq/config/route/paths.dart';
+import 'package:kliq/features/auth/presentation/login/login_screen.dart';
 import 'package:kliq/features/welcome/presentation/welcome_screen.dart';
 
 class AppRouter {
   static final key = GlobalKey<NavigatorState>();
   static final router = GoRouter(
-    initialLocation: Paths.appStateObserver.path,
+    initialLocation: Paths.loginScreenRoute.path,
     navigatorKey: key,
     routes: [
       GoRoute(
@@ -20,11 +21,11 @@ class AppRouter {
             key: state.pageKey, child: const AppStateObserver()),
       ),
       GoRoute(
-        path: Paths.welcomeScreenRoute.path,
-        name: Paths.welcomeScreenRoute.routeName,
+        path: Paths.loginScreenRoute.path,
+        name: Paths.loginScreenRoute.routeName,
         pageBuilder: (context, state) => FadeTransitionPage(
           key: state.pageKey,
-          child: const WelcomeScreen(),
+          child: const LoginScreen(),
         ),
       ),
     ],

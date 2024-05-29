@@ -11,9 +11,9 @@ class KliqApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedString = ref.watch(languageProvider);
 
-    const localization = kliqLocalization();
+    const localization = KliqLocalization();
 
-    return kliqTheme(
+    return KliqTheme(
         themeMode: ThemeMode.light,
         builder: (config) {
           return MaterialApp.router(

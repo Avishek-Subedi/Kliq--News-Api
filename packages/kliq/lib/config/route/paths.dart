@@ -9,4 +9,7 @@ class Paths {
 
   static final RouteModel welcomeScreenRoute =
       RouteModel(routeName: 'welcomeScreenRoute', path: '/welcomeScreenRoute');
+
+  static final RouteModel loginScreenRoute =
+      RouteModel(routeName: 'loginScreenRoute', path: '/loginScreenRoute');
 }

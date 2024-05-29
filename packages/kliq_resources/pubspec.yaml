@@ -25,8 +25,8 @@ flutter:
   uses-material-design: true
   generate: true
 
-  # assets:
-  # - assets/icons-bin/
+  assets:
+    - assets/nav-bin/
 
   # - assets/images-bin/
   # - assets/header-bin/

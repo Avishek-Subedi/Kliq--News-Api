@@ -16,6 +16,7 @@ dependencies:
   kliq: any
   go_router: ^11.1.3
   permission_handler: ^11.0.1
+  loading_animation_widget:
 
   vector_graphics: ^1.1.7
 
