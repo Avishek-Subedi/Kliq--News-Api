@@ -137,7 +137,7 @@ ColorScheme _lightColorScheme = ColorScheme.light(
   surfaceTint: Color(0xffDCE8F5),
   onSurface: Color(0xff191C1D),
   onSurfaceVariant: Color(0xff757B80),
-  surfaceVariant: Color(0xffdce4e8),
+  surfaceContainerHighest: Color(0xffdce4e8),
   outline: Color(0xff9EA3A6),
   outlineVariant: Colors.white,
   // Inverse & Shadow Colors
@@ -146,7 +146,6 @@ ColorScheme _lightColorScheme = ColorScheme.light(
   inversePrimary: Color(0xff5FD4FD),
   scrim: Colors.black,
   shadow: Colors.black,
-  background: Color(0xff1D67DD),
 );
 
 const ColorScheme _darkColorScheme = ColorScheme.dark(
@@ -176,7 +175,7 @@ const ColorScheme _darkColorScheme = ColorScheme.dark(
   surfaceTint: Color(0xffDCE8F5),
   onSurface: Color(0xff191C1D),
   onSurfaceVariant: Color(0xff757B80),
-  surfaceVariant: Color(0xffdce4e8),
+  surfaceContainerHighest: Color(0xffdce4e8),
   outline: Color(0xff9EA3A6),
   outlineVariant: Colors.white,
   // Inverse & Shadow Colors
@@ -185,7 +184,6 @@ const ColorScheme _darkColorScheme = ColorScheme.dark(
   inversePrimary: Color(0xff5FD4FD),
   scrim: Colors.black,
   shadow: Colors.black,
-  background: Color(0xff1D67DD),
 );
 
 // https://github.com/flutter/flutter/issues/115912

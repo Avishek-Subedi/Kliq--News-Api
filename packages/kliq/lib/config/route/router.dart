@@ -1,11 +1,3 @@
-/// The `AppRouter` class defines the routing configuration for the Flutter application using the
-/// `GoRouter` package.
-/// The line `import 'package:flutter/foundation.dart';` is importing the `foundation` library from the
-/// `flutter` package. This library provides fundamental classes and functions that are commonly used in
-/// Flutter applications. It includes classes for handling asynchronous operations, defining
-/// platform-specific behavior, and other utility functions. In this specific case, it is being used to
-/// access the `kDebugMode` constant, which is used in the `debugLogDiagnostics` parameter of the
-/// `GoRouter` configuration to enable or disable debug logging.
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
