@@ -12,15 +12,17 @@ class LoginHeader extends StatelessWidget {
     return Column(
       children: [
         Picture(
-          source: Asset.icons.chat,
-          height: screenHeight(context) / 28,
+          source: Asset.icons.k,
+          colorFilter: const ColorFilter.mode(
+              Color.fromARGB(255, 212, 205, 205), BlendMode.srcATop),
+          height: screenHeight(context) / 15,
         ),
         SizedBox(height: screenHeight(context) / 70),
         Text(
-          "Please fill your login details",
+          "Please Fill in your Details",
           style: textTheme(context)
-              .bodySmall
-              ?.copyWith(color: Colors.white, fontSize: 8),
+              .bodyMedium
+              ?.copyWith(color: Colors.white, fontSize: 12),
         ),
       ],
     );
