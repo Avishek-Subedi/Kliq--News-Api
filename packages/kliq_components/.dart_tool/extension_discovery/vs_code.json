@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "entries": [
+    { "package": "kliq", "rootUri": "../../kliq/", "packageUri": "lib/" },
+    {
+      "package": "kliq_resources",
+      "rootUri": "../../kliq_resources/",
+      "packageUri": "lib/"
+    },
+    { "package": "kliq_components", "rootUri": "../", "packageUri": "lib/" },
+    {
+      "package": "flutter_gen",
+      "rootUri": "flutter_gen/",
+      "packageUri": "flutter_gen/"
+    }
+  ]
+}
