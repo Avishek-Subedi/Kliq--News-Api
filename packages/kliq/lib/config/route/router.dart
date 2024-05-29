@@ -7,11 +7,12 @@ import 'package:kliq/config/error_screen.dart';
 import 'package:kliq/config/route/paths.dart';
 import 'package:kliq/features/auth/presentation/login/login_screen.dart';
 import 'package:kliq/features/auth/presentation/signup/signup_screen.dart';
+import 'package:kliq/features/news/presentation/home_screen.dart';
 
 class AppRouter {
   static final key = GlobalKey<NavigatorState>();
   static final router = GoRouter(
-    initialLocation: Paths.loginScreenRoute.path,
+    initialLocation: Paths.homeScreenRoute.path,
     navigatorKey: key,
     routes: [
       GoRoute(
@@ -26,6 +27,14 @@ class AppRouter {
         pageBuilder: (context, state) => FadeTransitionPage(
           key: state.pageKey,
           child: const LoginScreen(),
+        ),
+      ),
+      GoRoute(
+        path: Paths.homeScreenRoute.path,
+        name: Paths.homeScreenRoute.routeName,
+        pageBuilder: (context, state) => FadeTransitionPage(
+          key: state.pageKey,
+          child: const HomeScreen(),
         ),
       ),
       GoRoute(

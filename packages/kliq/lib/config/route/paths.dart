@@ -15,4 +15,6 @@ class Paths {
 
   static final RouteModel signupScreenRoute =
       RouteModel(routeName: 'signupScreenRoute', path: '/signupScreenRoute');
+  static final RouteModel homeScreenRoute =
+      RouteModel(routeName: 'homeScreenRoute', path: '/homeScreenRoute');
 }
