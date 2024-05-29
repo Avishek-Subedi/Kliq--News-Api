@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:kliq/core/constants/enums.dart';
 import 'package:kliq/features/auth/controllers/auth_controller.dart' as auth;
 import 'package:kliq/app_setup/controller/base_state.dart';
+import 'package:kliq/features/auth/presentation/widgets/login_header.dart';
 import 'package:kliq/features/auth/presentation/widgets/social_container.dart';
 import 'package:kliq_components/kliq_componenets.dart';
 import 'package:kliq_resources/kliq_resources.dart';
@@ -48,7 +49,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: Colors.white,
+        backgroundColor: colorScheme(context).primary,
         body: SizedBox(
           height: screenHeight(context),
           child: Stack(
@@ -56,8 +57,8 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
               ClipPath(
                 clipper: CustomClipPathDown(),
                 child: Container(
-                  height: screenHeight(context) / 1.8,
-                  color: colorScheme(context).primary,
+                  height: screenHeight(context) / 1.5,
+                  color: colorScheme(context).surface,
                   padding: EdgeInsets.symmetric(
                       horizontal: 18, vertical: screenHeight(context) / 18),
                   width: screenWidth(context),
@@ -134,7 +135,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                           builder: (context, ref, child) {
                             final authState0 =
                                 ref.watch(auth.loginControllerProvider);
-                            return KliqButton(
+                            return KliqButton.tonal(
                               label: "Register",
                               showProgress:
                                   authState0 is BaseLoading ? true : false,
@@ -254,27 +255,3 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
 ///
 ///
 
-class LoginHeader extends StatelessWidget {
-  const LoginHeader({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Picture(
-          source: Asset.icons.chat,
-          height: screenHeight(context) / 28,
-        ),
-        SizedBox(height: screenHeight(context) / 70),
-        Text(
-          "Please fill your login details",
-          style: textTheme(context)
-              .bodySmall
-              ?.copyWith(color: Colors.white, fontSize: 8),
-        ),
-      ],
-    );
-  }
-}

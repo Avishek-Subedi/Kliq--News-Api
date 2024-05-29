@@ -120,7 +120,7 @@ class _TonalButton extends KliqButton {
                   label,
                   style: textTheme(context)
                       .labelLarge
-                      ?.copyWith(color: colorScheme(context).surface),
+                      ?.copyWith(color: colorScheme(context).primary),
                 ),
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kliq/config/route/paths.dart';
 import 'package:kliq/core/constants/enums.dart';
 import 'package:kliq/features/auth/controllers/auth_controller.dart' as auth;
 import 'package:kliq/app_setup/controller/base_state.dart';
@@ -48,6 +49,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     // );
     return SafeArea(
       child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            context.push(Paths.signupScreenRoute.path);
+          },
+        ),
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         body: SizedBox(
@@ -231,11 +237,17 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               .copyWith(color: Colors.black, fontSize: 13),
                         ),
                         const SizedBox(width: 12),
-                        Text(
-                          "Signup",
-                          style: textTheme(context).bodyMedium?.copyWith(
-                              fontSize: 13,
-                              color: colorScheme(context).primary),
+                        InkWell(
+                          onTap: () {
+                            context.push(Paths.signupScreenRoute.path);
+                            print("onto the signupScreen");
+                          },
+                          child: Text(
+                            "Signup",
+                            style: textTheme(context).bodyMedium?.copyWith(
+                                fontSize: 13,
+                                color: colorScheme(context).primary),
+                          ),
                         )
                       ],
                     )
