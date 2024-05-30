@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kliq/config/route/paths.dart';
 import 'package:kliq/core/constants/enums.dart';
 import 'package:kliq/features/auth/controllers/auth_controller.dart' as auth;
 import 'package:kliq/app_setup/controller/base_state.dart';
@@ -124,7 +125,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                             ),
                             KliqTextField(
                               controller: _passwordController,
-                              isPassword: false,
+                              isPassword: true,
                               onPressed: () {},
 
                               // validator: (value) =>
@@ -165,9 +166,8 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                     ),
                     Text(
                       'or signup with',
-                      style: textTheme(context)
-                          .bodySmall
-                          ?.copyWith(color: colorScheme(context).surface),
+                      style: textTheme(context).bodySmall?.copyWith(
+                          color: colorScheme(context).surface, fontSize: 12),
                     ),
                     const SizedBox(height: 15),
                     SizedBox(
@@ -231,11 +231,16 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                               ),
                         ),
                         const SizedBox(width: 8),
-                        Text(
-                          "Login",
-                          style: textTheme(context).bodyMedium?.copyWith(
-                              fontSize: 13,
-                              color: colorScheme(context).surface),
+                        InkWell(
+                          onTap: () {
+                            context.go(Paths.loginScreenRoute.path);
+                          },
+                          child: Text(
+                            "Login",
+                            style: textTheme(context).bodyMedium?.copyWith(
+                                fontSize: 13,
+                                color: colorScheme(context).surface),
+                          ),
                         )
                       ],
                     )

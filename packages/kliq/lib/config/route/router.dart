@@ -12,7 +12,7 @@ import 'package:kliq/features/news/presentation/home_screen.dart';
 class AppRouter {
   static final key = GlobalKey<NavigatorState>();
   static final router = GoRouter(
-    initialLocation: Paths.homeScreenRoute.path,
+    initialLocation: Paths.loginScreenRoute.path,
     navigatorKey: key,
     routes: [
       GoRoute(

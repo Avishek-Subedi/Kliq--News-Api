@@ -75,7 +75,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       const SizedBox(height: 35),
                       const Align(
                         alignment: Alignment.center,
-                        child: LoginHeader(),
+                        child: LoginHeader(isLoginScreen: true),
                       ),
                       const SizedBox(height: 35),
                       Form(
@@ -113,7 +113,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             ),
                             KliqTextField(
                               controller: _passwordController,
-                              isPassword: false,
+                              isPassword: true,
+
                               onPressed: () {},
 
                               // validator: (value) =>
@@ -171,10 +172,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       height: screenHeight(context) * 0.09,
                     ),
                     Text(
-                      'or signup with',
-                      style: textTheme(context)
-                          .bodyMedium!
-                          .copyWith(color: colorScheme(context).onSecondary),
+                      'or login with',
+                      style: textTheme(context).bodySmall?.copyWith(
+                          color: colorScheme(context).onSecondary,
+                          fontSize: 12),
                     ),
                     const SizedBox(height: 15),
                     SizedBox(

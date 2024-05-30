@@ -4,6 +4,8 @@ import 'package:kliq_components/kliq_componenets.dart';
 class KliqTextField extends StatefulWidget {
   final TextEditingController controller;
 
+  final bool isLoginScreen;
+
   final bool isPassword;
   final VoidCallback? onPressed;
 
@@ -13,6 +15,7 @@ class KliqTextField extends StatefulWidget {
     required this.controller,
     this.isPassword = false,
     this.onPressed,
+    this.isLoginScreen = false,
     this.validator,
   });
 

@@ -95,7 +95,7 @@ class _TonalButton extends KliqButton {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(borderRadius),
-          border: Border.all(color: Colors.white, width: 2),
+          border: Border.all(color: colorScheme(context).primary, width: 2),
           boxShadow: [
             BoxShadow(
               blurRadius: boxShadowBlurRadius,
