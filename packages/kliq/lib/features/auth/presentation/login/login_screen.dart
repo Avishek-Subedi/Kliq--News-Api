@@ -52,7 +52,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            context.push(Paths.signupScreenRoute.path);
+            // context.push(Paths.signupScreenRoute.path);
+            context.push(Paths.homeScreenRoute.path);
           },
         ),
         resizeToAvoidBottomInset: false,

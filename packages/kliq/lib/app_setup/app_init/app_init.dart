@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:kliq/app_setup/app_init/firebase_options.dart';
 import 'package:kliq/app_setup/local_database/hive/hive_const.dart';
-import 'package:kliq/features/favourite/data/model/favourite_model.dart';
+import 'package:kliq/features/favourite/domain/model/favourite_model.dart';
 
 class AppInit {
   static Future<void> initialize() async {
