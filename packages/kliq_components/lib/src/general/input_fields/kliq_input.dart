@@ -27,7 +27,9 @@ class _KliqTextFieldState extends State<KliqTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: textTheme(context).bodySmall!.copyWith(),
+      style: textTheme(context)
+          .bodyLarge!
+          .copyWith(color: Colors.white, fontSize: 40),
       controller: widget.controller,
       validator: widget.validator,
       obscureText: widget.isPassword ? true : false,

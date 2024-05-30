@@ -1,22 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kliq/features/news/domain/model/article_model.dart';
 import 'package:kliq_components/kliq_componenets.dart';
 
 class NewsCard extends ConsumerWidget {
   const NewsCard({
     super.key,
-    required this.title,
-    required this.desc,
-    required this.time,
-    required this.imageUrl,
-    required this.id,
+    required this.article,
     required this.onTap,
   });
-  final String title;
-  final String desc;
-  final String time;
-  final String imageUrl;
-  final String id;
+  final Article article;
   final VoidCallback onTap;
 
   @override
@@ -44,7 +37,7 @@ class NewsCard extends ConsumerWidget {
                   height: screenWidth(context) / 4,
                   width: screenWidth(context) / 3.2,
                   child: Image.network(
-                    imageUrl,
+                    article.imageUrl ?? '',
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -56,7 +49,7 @@ class NewsCard extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      title,
+                      article.title,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       style: textTheme(context).bodyLarge!.copyWith(
@@ -67,7 +60,7 @@ class NewsCard extends ConsumerWidget {
                     ),
                     Text(
                       overflow: TextOverflow.ellipsis,
-                      desc,
+                      article.description ?? '',
                       maxLines: 3,
                       style: textTheme(context).bodySmall!.copyWith(
                             fontSize: 12,
@@ -76,7 +69,7 @@ class NewsCard extends ConsumerWidget {
                     ),
                     Text(
                       overflow: TextOverflow.ellipsis,
-                      time,
+                      article.pubDate ?? '',
                       style: textTheme(context).bodySmall!.copyWith(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
