@@ -5,6 +5,7 @@ import 'package:kliq/config/route/paths.dart';
 import 'package:kliq/core/constants/enums.dart';
 import 'package:kliq/features/auth/controllers/auth_controller.dart' as auth;
 import 'package:kliq/app_setup/controller/base_state.dart';
+import 'package:kliq/features/auth/presentation/signup/signup_screen.dart';
 import 'package:kliq/features/auth/presentation/widgets/login_header.dart';
 import 'package:kliq/features/auth/presentation/widgets/social_container.dart';
 import 'package:kliq_components/kliq_componenets.dart';
@@ -240,7 +241,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         const SizedBox(width: 12),
                         InkWell(
                           onTap: () {
-                            context.push(Paths.signupScreenRoute.path);
+                            Navigator.of(context)
+                                .push(downAnimation(const SignupScreen()));
                             print("onto the signupScreen");
                           },
                           child: Text(
