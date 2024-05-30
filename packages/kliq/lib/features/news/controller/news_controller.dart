@@ -8,10 +8,10 @@ import 'package:kliq/features/news/domain/repo/news_repo.dart';
 ///
 /// This provider is a `family` provider, which means it takes a parameter
 /// (`search`) to allow dynamic creation of controllers based on the search query.
-final newsController = StateNotifierProvider.autoDispose
-    .family<NewsController, BaseState<ArticleResponse>, String>((ref, search) {
+final newsController = StateNotifierProvider.autoDispose<NewsController,
+    BaseState<ArticleResponse>>((ref) {
   final repo = ref.watch(newsRepoProvider);
-  return NewsController(repo, search);
+  return NewsController(repo);
 });
 
 /// News Controller
@@ -32,15 +32,13 @@ class NewsController extends StateNotifier<BaseState<ArticleResponse>> {
   ///
   /// - `newsRepo`: The repository used to fetch news articles.
   /// - `searchQuery`: The search query used to filter articles.
-  NewsController(this.newsRepo, this.searchQuery)
+  NewsController(this.newsRepo)
       : super(
           const BaseState<ArticleResponse>.initial(),
         ) {
     getArticles();
   }
-
   final NewsRepo newsRepo;
-  final String searchQuery;
 
   /// Fetch Articles
   ///

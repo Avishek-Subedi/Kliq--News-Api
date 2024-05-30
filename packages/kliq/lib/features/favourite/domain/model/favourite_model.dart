@@ -28,7 +28,11 @@ class FavouriteNews {
   @HiveField(5)
   String? content;
 
-  /// Fescription
+  /// Description
   @HiveField(6)
   String? description;
+
+  /// Uid
+  @HiveField(7)
+  String? uid;
 }

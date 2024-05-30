@@ -3,12 +3,12 @@ import 'package:kliq/features/favourite/domain/model/favourite_model.dart';
 /// Abstract class for managing favorite news items.
 abstract class FavouriteNewsRepo {
   /// Deletes a favorite news item with the specified [id].
-  Future<void> deleteNews({required int id});
+  Future<void> deleteNews({required String uid});
 
   /// Adds a new favorite news item.
   ///
   /// The [news] parameter specifies the favorite news item to add.
-  Future<void> addFAvouriteNews({required FavouriteNews news});
+  Future<void> toggleFav({required FavouriteNews news});
 
   /// Retrieves a list of all favorite news items.
   ///

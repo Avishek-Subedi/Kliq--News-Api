@@ -7,7 +7,7 @@ part 'article_client.g.dart';
 /// News Client
 @RestApi(
     baseUrl:
-        'https://newsdata.io/api/1/latest?apikey=pub_45130e2a567a68a5b05743735c98175760a27')
+        'https://newsdata.io/api/1/latest?apikey=pub_45179759f6a3d407a213a1234a26744b65a72')
 abstract class NewsService {
   /// Api Clieent Constructor
   factory NewsService(Dio dio) = _NewsService;

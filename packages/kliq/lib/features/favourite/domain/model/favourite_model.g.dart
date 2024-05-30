@@ -23,13 +23,14 @@ class FavouriteNewsAdapter extends TypeAdapter<FavouriteNews> {
       ..language = fields[3] as double?
       ..country = fields[4] as String?
       ..content = fields[5] as String?
-      ..description = fields[6] as String?;
+      ..description = fields[6] as String?
+      ..uid = fields[7] as String?;
   }
 
   @override
   void write(BinaryWriter writer, FavouriteNews obj) {
     writer
-      ..writeByte(7)
+      ..writeByte(8)
       ..writeByte(0)
       ..write(obj.title)
       ..writeByte(1)
@@ -43,7 +44,9 @@ class FavouriteNewsAdapter extends TypeAdapter<FavouriteNews> {
       ..writeByte(5)
       ..write(obj.content)
       ..writeByte(6)
-      ..write(obj.description);
+      ..write(obj.description)
+      ..writeByte(7)
+      ..write(obj.uid);
   }
 
   @override

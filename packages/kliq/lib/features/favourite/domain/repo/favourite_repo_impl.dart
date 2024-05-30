@@ -10,18 +10,26 @@ class FavouriteNewsRepoImpl implements FavouriteNewsRepo {
   FavouriteNewsRepoImpl(this.hiveService);
 
   @override
-  Future<void> addFAvouriteNews({required FavouriteNews news}) async {
+  Future<void> toggleFav({required FavouriteNews news}) async {
     try {
-      await hiveService.add(news);
+      final isFav = await hiveService.getItem(news.uid!);
+      if (isFav != null) {
+        await hiveService.delete(news.uid!);
+        return;
+      }
+      await hiveService.putItems(
+        itemKey: news.uid!,
+        news: news,
+      );
     } catch (e) {
       rethrow;
     }
   }
 
   @override
-  Future<void> deleteNews({required int id}) async {
+  Future<void> deleteNews({required String uid}) async {
     try {
-      await hiveService.delete(id);
+      await hiveService.delete(uid);
     } catch (e) {
       rethrow;
     }

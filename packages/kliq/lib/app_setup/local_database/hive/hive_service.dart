@@ -21,21 +21,20 @@ class HiveService<T> {
     }
   }
 
-  /// Add a news item to favorites
-  Future<void> add(T news) async {
+  /// Get a single item from the box by its [key].
+  Future<T?> getItem(String key) async {
     try {
       await _openBox();
-      await _box.add(news);
+      return _box.get(key);
     } catch (e) {
       rethrow;
     }
   }
 
-  /// Get a single item from the box by its [key].
-  Future<T?> getItem(int key) async {
+  Future<void> putItems({required String itemKey, required T news}) async {
     try {
       await _openBox();
-      return _box.get(key);
+      return _box.put(itemKey, news);
     } catch (e) {
       rethrow;
     }
@@ -52,7 +51,7 @@ class HiveService<T> {
   }
 
   /// Delete a news item from favorites by key
-  Future<void> delete(int key) async {
+  Future<void> delete(String key) async {
     try {
       await _openBox();
       await _box.delete(key);

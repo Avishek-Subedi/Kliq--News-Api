@@ -10,7 +10,6 @@ import 'package:kliq/features/news/presentation/widgets/chip_widget.dart';
 import 'package:kliq/features/news/presentation/widgets/news_card.dart';
 import 'package:kliq/features/news/presentation/widgets/search_header.dart';
 import 'package:kliq_components/kliq_componenets.dart';
-import 'package:kliq_resources/kliq_resources.dart';
 
 class NewsScreen extends ConsumerStatefulWidget {
   const NewsScreen({super.key});
@@ -23,18 +22,22 @@ class _NewsScreenState extends ConsumerState<NewsScreen> {
   @override
   void initState() {
     super.initState();
+    ref.read(newsController.notifier).getArticles();
   }
 
   @override
   Widget build(
     BuildContext context,
   ) {
-    final newsState = ref.watch(newsController(''));
+    final newsState = ref.watch(newsController);
     return newsState.maybeWhen(
       orElse: () => const Center(
         child: Text('Something went wrong'),
       ),
       error: (message) => Text(message.reason),
+      loading: () => const Center(
+        child: CircularProgressIndicator(),
+      ),
       initial: () => const SizedBox.shrink(),
       success: (data) {
         return Container(
@@ -44,14 +47,11 @@ class _NewsScreenState extends ConsumerState<NewsScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 VerticalGap.xl,
-                VerticalGap.l,
                 SearchHeader(),
                 CarouselWidget(articles: data?.results ?? []),
                 VerticalGap.l,
                 CategoryWidgets(article: data?.results ?? []),
                 VerticalGap.l,
-
-                // SliverToBoxAdapter(child: ,),
               ],
             ),
           ),

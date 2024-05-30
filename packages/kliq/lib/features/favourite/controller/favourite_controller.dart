@@ -1,4 +1,3 @@
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kliq/app_setup/controller/base_state.dart';
 import 'package:kliq/app_setup/errors/failure.dart';
@@ -7,13 +6,16 @@ import 'package:kliq/features/favourite/domain/model/favourite_model.dart';
 import 'package:kliq/features/favourite/domain/repo/favourite_repo.dart';
 
 /// Provider for managing favorite news items
-final favouriteControllerProvider = StateNotifierProvider((ref) {
+final favouriteController =
+    StateNotifierProvider<FavouriteController, BaseState<List<FavouriteNews>>>(
+        (ref) {
   final favNewsRepo = ref.watch(favouriteProvider);
   return FavouriteController(favNewsRepo);
 });
 
 /// Controller for managing favorite news items
-class FavouriteController extends StateNotifier<BaseState<List<FavouriteNews>>> {
+class FavouriteController
+    extends StateNotifier<BaseState<List<FavouriteNews>>> {
   final FavouriteNewsRepo favNewsRepo;
 
   /// Constructor for FavouriteController
@@ -21,10 +23,10 @@ class FavouriteController extends StateNotifier<BaseState<List<FavouriteNews>>> 
       : super(const BaseState<List<FavouriteNews>>.initial());
 
   /// Method to add a favorite news item
-  Future<void> addFavouriteNews({required FavouriteNews news}) async {
+  Future<void> toggleFav({required FavouriteNews news}) async {
     try {
       state = const BaseState.loading();
-      await favNewsRepo.addFAvouriteNews(news: news);
+      await favNewsRepo.toggleFav(news: news);
       state = const BaseState<List<FavouriteNews>>.success(data: []);
     } catch (e) {
       state = BaseState.error(Failure.fromException(e));
@@ -43,10 +45,10 @@ class FavouriteController extends StateNotifier<BaseState<List<FavouriteNews>>> 
   }
 
   /// Method to delete a favorite news item by its ID
-  Future<void> deleteItem({required int id}) async {
+  Future<void> deleteItem({required String uid}) async {
     try {
       state = const BaseState.loading();
-      await favNewsRepo.deleteNews(id: id);
+      await favNewsRepo.deleteNews(uid: uid);
       state = const BaseState<List<FavouriteNews>>.success(data: null);
     } catch (e) {
       state = BaseState.error(Failure(e.toString(), FailureType.exception));
