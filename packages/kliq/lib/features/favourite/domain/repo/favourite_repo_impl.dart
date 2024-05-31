@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:kliq/app_setup/local_database/hive/hive_service.dart';
 import 'package:kliq/features/favourite/domain/model/favourite_model.dart';
 import 'package:kliq/features/favourite/domain/repo/favourite_repo.dart';
@@ -12,6 +14,7 @@ class FavouriteNewsRepoImpl implements FavouriteNewsRepo {
   @override
   Future<void> toggleFav({required FavouriteNews news}) async {
     try {
+      log('hello from service', name: '01 serv');
       final isFav = await hiveService.getItem(news.uid!);
       if (isFav != null) {
         await hiveService.delete(news.uid!);
@@ -22,6 +25,7 @@ class FavouriteNewsRepoImpl implements FavouriteNewsRepo {
         news: news,
       );
     } catch (e) {
+      log(e.toString());
       rethrow;
     }
   }

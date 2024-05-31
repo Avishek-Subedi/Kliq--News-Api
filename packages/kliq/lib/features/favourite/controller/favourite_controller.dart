@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kliq/app_setup/controller/base_state.dart';
 import 'package:kliq/app_setup/errors/failure.dart';
@@ -26,7 +28,10 @@ class FavouriteController
   Future<void> toggleFav({required FavouriteNews news}) async {
     try {
       state = const BaseState.loading();
-      await favNewsRepo.toggleFav(news: news);
+      await favNewsRepo.toggleFav(
+        news: news,
+      );
+
       state = const BaseState<List<FavouriteNews>>.success(data: []);
     } catch (e) {
       state = BaseState.error(Failure.fromException(e));

@@ -18,7 +18,7 @@ class FavouriteNews {
 
   /// Language
   @HiveField(3)
-  double? language;
+  String? language;
 
   /// Country
   @HiveField(4)
@@ -35,4 +35,44 @@ class FavouriteNews {
   /// Uid
   @HiveField(7)
   String? uid;
+
+  /// Uid
+  @HiveField(8)
+  String? url;
+
+  FavouriteNews({
+    this.title,
+    this.imageUrl,
+    this.videoUrl,
+    this.language,
+    this.country,
+    this.content,
+    this.description,
+    this.uid,
+    this.url,
+  });
+
+  FavouriteNews copyWith({
+    String? title,
+    String? imageUrl,
+    String? videoUrl,
+    String? language,
+    String? country,
+    String? content,
+    String? description,
+    String? uid,
+    String? url,
+  }) {
+    return FavouriteNews(
+      title: title ?? this.title,
+      imageUrl: imageUrl ?? this.imageUrl,
+      videoUrl: videoUrl ?? this.videoUrl,
+      language: language ?? this.language,
+      country: country ?? this.country,
+      content: content ?? this.content,
+      description: description ?? this.description,
+      uid: uid ?? this.uid,
+      url: url ?? this.url,
+    );
+  }
 }

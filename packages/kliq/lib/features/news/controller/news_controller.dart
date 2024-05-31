@@ -38,6 +38,7 @@ class NewsController extends StateNotifier<BaseState<ArticleResponse>> {
         ) {
     getArticles();
   }
+
   final NewsRepo newsRepo;
 
   /// Fetch Articles

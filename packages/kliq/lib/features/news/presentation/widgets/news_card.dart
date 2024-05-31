@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kliq/features/favourite/domain/model/favourite_model.dart';
 import 'package:kliq/features/news/domain/model/article_model.dart';
+import 'package:kliq/features/news/presentation/widgets/icon_widget.dart';
 import 'package:kliq_components/kliq_componenets.dart';
 
 class NewsCard extends ConsumerWidget {
@@ -24,7 +26,6 @@ class NewsCard extends ConsumerWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             boxShadow: const [],
-
             // border: Border.all(color: Colors.blueAccent),
           ),
           width: screenWidth(context),
@@ -80,8 +81,17 @@ class NewsCard extends ConsumerWidget {
                 ),
               ),
               HorizontalGap.m,
-              const Icon(
-                Icons.favorite_outline,
+              IconWidget(
+                news: FavouriteNews(
+                  title: article.title,
+                  imageUrl: article.imageUrl,
+                  videoUrl: article.videoUrl,
+                  language: article.language,
+                  content: article.content,
+                  description: article.description,
+                  uid: article.articleId,
+                  url: article.sourceUrl,
+                ),
               )
             ],
           ),

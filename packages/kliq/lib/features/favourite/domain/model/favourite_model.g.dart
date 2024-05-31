@@ -16,21 +16,23 @@ class FavouriteNewsAdapter extends TypeAdapter<FavouriteNews> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return FavouriteNews()
-      ..title = fields[0] as String?
-      ..imageUrl = fields[1] as String?
-      ..videoUrl = fields[2] as String?
-      ..language = fields[3] as double?
-      ..country = fields[4] as String?
-      ..content = fields[5] as String?
-      ..description = fields[6] as String?
-      ..uid = fields[7] as String?;
+    return FavouriteNews(
+      title: fields[0] as String?,
+      imageUrl: fields[1] as String?,
+      videoUrl: fields[2] as String?,
+      language: fields[3] as String?,
+      country: fields[4] as String?,
+      content: fields[5] as String?,
+      description: fields[6] as String?,
+      uid: fields[7] as String?,
+      url: fields[8] as String?,
+    );
   }
 
   @override
   void write(BinaryWriter writer, FavouriteNews obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.title)
       ..writeByte(1)
@@ -46,7 +48,9 @@ class FavouriteNewsAdapter extends TypeAdapter<FavouriteNews> {
       ..writeByte(6)
       ..write(obj.description)
       ..writeByte(7)
-      ..write(obj.uid);
+      ..write(obj.uid)
+      ..writeByte(8)
+      ..write(obj.url);
   }
 
   @override
