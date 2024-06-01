@@ -39,9 +39,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             color: Colors.amber,
           ),
         ),
-        
-        Text('Name'),
-        Text('Email')
+        const Text('Name'),
+        const Text('Email')
       ],
     );
   }
