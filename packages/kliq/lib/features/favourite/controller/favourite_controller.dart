@@ -30,6 +30,7 @@ class FavouriteController
       {required FavouriteNews news}) async {
     try {
       state = const BaseState.loading();
+
       await favNewsRepo.toggleFav(
         context,
         news: news,

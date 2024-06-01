@@ -1,31 +1,67 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive/hive.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:kliq/app/widgets/kliq_dialog.dart';
+import 'package:kliq/app_setup/local_database/hive/hive_const.dart';
+import 'package:kliq/features/auth/controllers/auth_status_provider.dart';
 import 'package:kliq/features/auth/presentation/profile/profile_screen.dart';
+import 'package:kliq/features/favourite/domain/model/favourite_model.dart';
 import 'package:kliq/features/favourite/presentation/favourite_screen.dart';
 import 'package:kliq/features/news/presentation/news_screen.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({super.key, this.user});
+  final User? user;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends ConsumerState<HomeScreen>
-    with AutomaticKeepAliveClientMixin {
-  /// List Of Screen
-  final List<Widget> _screens = const [
-    NewsScreen(),
-    FavouriteScreen(),
-    ProfileScreen()
-  ];
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  late List<Widget> _screens;
+  late Box<FavouriteNews> _favouriteBox;
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeScreens();
+  }
+
+  void _initializeScreens() {
+    _screens = [
+      const NewsScreen(),
+      const FavouriteScreen(),
+      const ProfileScreen(),
+    ];
+  }
+
+  @override
+  void didUpdateWidget(covariant HomeScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.user != oldWidget.user) {
+      setState(() {
+        _initializeScreens();
+        if (_selectedIndex >= _screens.length) {
+          _selectedIndex = 0;
+        }
+      });
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
 
   /// Selected Screens
   int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
+    final user = ref.watch(authStatusProvider).user;
     return Scaffold(
       body: IndexedStack(
         index: _selectedIndex,
@@ -33,8 +69,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
       ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {
-          _selectedIndex = index;
-          setState(() {});
+          if (user == null && index > 0) {
+            LogoutAlertDialogue.showLoginAlert(context);
+            return;
+          }
+          setState(() {
+            _selectedIndex = index;
+          });
         },
         currentIndex: _selectedIndex,
         items: const <BottomNavigationBarItem>[
@@ -56,5 +97,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
   }
 
   @override
-  bool get wantKeepAlive => true;
+  void dispose() {
+    super.dispose();
+  }
 }

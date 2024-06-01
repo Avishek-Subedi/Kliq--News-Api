@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kliq/app_setup/errors/failure.dart';
+import 'package:kliq/app_setup/errors/firebase_auth_extension.dart';
 import 'package:kliq/core/constants/enums.dart';
 import 'package:kliq/features/auth/domain/models/user_model.dart';
 import 'package:kliq/features/auth/domain/repositories/auth_repositories.dart';
@@ -20,6 +21,10 @@ class AuthRepositoryImpl implements AuthRepository {
           email: email, password: password);
 
       return Right(UserModel(email: response.user!.email!, userId: 'userId'));
+    } on FirebaseAuthException catch (e) {
+      return Left(
+        Failure(e.getMessageFromErrorCode, FailureType.authentication),
+      );
     } catch (e) {
       return Left(Failure.fromException(e));
     }
@@ -55,6 +60,10 @@ class AuthRepositoryImpl implements AuthRepository {
           ),
         );
       }
+    } on FirebaseAuthException catch (e) {
+      return Left(
+        Failure(e.getMessageFromErrorCode, FailureType.authentication),
+      );
     } catch (e) {
       return Left(
         Failure(
@@ -68,12 +77,30 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<Failure, UserModel>> signupWithCreds(
       {required String email, required String password}) async {
-    // TODO: implement signupWithCreds
     try {
       final response = await firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
-
       return Right(UserModel(email: response.user!.email!, userId: 'userId'));
+    } on FirebaseAuthException catch (e) {
+      return Left(
+        Failure(e.getMessageFromErrorCode, FailureType.authentication),
+      );
+    } catch (e) {
+      return Left(Failure.fromException(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> logout() async {
+    try {
+      await firebaseAuth.signOut();
+      await _googleSignIn.signOut();
+
+      return const Right(true);
+    } on FirebaseAuthException catch (e) {
+      return Left(
+        Failure(e.getMessageFromErrorCode, FailureType.authentication),
+      );
     } catch (e) {
       return Left(Failure.fromException(e));
     }

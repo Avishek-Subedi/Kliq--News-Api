@@ -1,40 +1,43 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:kliq/app_setup/controller/app_state.dart';
-import 'package:kliq/app_setup/local_database/local_data_source.dart';
 
-///
-final appController = StateNotifierProvider<AppStateNotifier, AppState>((ref) {
+import 'package:kliq/features/auth/controllers/auth_status_provider.dart';
+
+final appController =
+    StateNotifierProvider<AppStateNotifier, AppState<User>>((ref) {
   return AppStateNotifier(ref)..appStarted();
 });
 
-class AppStateNotifier extends StateNotifier<AppState> {
-  AppStateNotifier(this._ref) : super(const AppState<void>.started());
-  final Ref _ref;
+class AppStateNotifier extends StateNotifier<AppState<User>> {
+  AppStateNotifier(this._ref) : super(const AppState<User>.started());
 
-  LocalDataSource get _localDb => _ref.read(localDataSource);
+  final Ref _ref;
+  late final RemoveListener _authStatusListener;
 
   Future appStarted() async {
-    final status = await _localDb.isFirstInstalled();
-
-    state = status
-        ? const AppState.showOnBoarding()
-        : const AppState.unAuthenticated();
-    // : cachedUser.fold(
-    //     (value) {
-    //       if (value?.accessToken != null && !value!.isDoctor) {
-    //         return AppState<dynamic>.authenticated(value);
-    //       } else if (value?.accessToken != null && value!.isDoctor) {
-    //         return AppState<dynamic>.authenticatedDoctor(value);
-    //       } else {
-    //         return const AppState.unAuthenticated();
-    //       }
-    //     },
-    //     (failure) => AppState.unAuthenticated(failure: failure),
-    //   );
+    _ref.listen(authStatusProvider, (previous, next) {
+      _updateAuthState(
+        next.user,
+      );
+    });
   }
 
-  void updateAppState(AppState<void> appState) {
+  void _updateAuthState(User? user) async {
+    if (user != null) {
+      state = AppState<User>.authenticated(user);
+    } else {
+      state = const AppState.unAuthenticated();
+    }
+  }
+
+  void updateAppState(AppState<User> appState) {
     state = appState;
+  }
+
+  @override
+  void dispose() {
+    _authStatusListener();
+    super.dispose();
   }
 }

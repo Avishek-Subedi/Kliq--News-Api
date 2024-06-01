@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kliq/app_setup/controller/base_state.dart';
 import 'package:kliq/core/constants/enums.dart';
 import 'package:kliq/features/auth/domain/models/user_model.dart';
@@ -19,18 +20,18 @@ final socialLoginIn =
     StateNotifierProvider.autoDispose<AuthController, BaseState>(
         authController);
 
-// final signupControllerProvider = StateNotifierProvider.autoDispose<
-//     AuthController<UserModel>, BaseState<dynamic>>(
-//   _authController,
-// );
-// final socialLoginControllerProvider = StateNotifierProvider.autoDispose<
-//     AuthController<UserModel>, BaseState<dynamic>>(
-//   _authController,
-// );
-// final logoutControllerProvider = StateNotifierProvider.autoDispose<
-//     AuthController<UserModel>, BaseState<dynamic>>(
-//   _authController,
-// );
+final signupControllerProvider = StateNotifierProvider.autoDispose<
+    AuthController<UserModel>, BaseState<dynamic>>(
+  authController,
+);
+final socialLoginControllerProvider = StateNotifierProvider.autoDispose<
+    AuthController<UserModel>, BaseState<dynamic>>(
+  authController,
+);
+final logoutControllerProvider = StateNotifierProvider.autoDispose<
+    AuthController<UserModel>, BaseState<dynamic>>(
+  authController,
+);
 AuthController<T> authController<T>(Ref ref) {
   final authRepository = ref.watch(authRepositoryProvider);
   return AuthController<T>(ref, authRepository);
@@ -88,8 +89,13 @@ class AuthController<T> extends StateNotifier<BaseState> {
   }
 
   /// [logout] logout user from the app
-  // Future<void> logout() async {
-  //   state = const BaseState<void>.loading();
-  //   await authRepository.logout();
-  // }
+  Future<void> logout() async {
+    state = const BaseState<void>.loading();
+    final response = await authRepository.logout();
+    state = response.fold((errror) {
+      return BaseState<void>.error(errror);
+    }, (response) {
+      return const BaseState<void>.success();
+    });
+  }
 }

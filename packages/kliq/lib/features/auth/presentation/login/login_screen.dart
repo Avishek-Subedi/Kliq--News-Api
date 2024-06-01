@@ -1,10 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kliq/app_setup/controller/app_state.dart';
 import 'package:kliq/config/route/paths.dart';
 import 'package:kliq/core/constants/enums.dart';
 import 'package:kliq/features/auth/controllers/auth_controller.dart' as auth;
 import 'package:kliq/app_setup/controller/base_state.dart';
+import 'package:kliq/features/auth/controllers/auth_status_provider.dart';
 import 'package:kliq/features/auth/presentation/signup/signup_screen.dart';
 import 'package:kliq/features/auth/presentation/widgets/login_header.dart';
 import 'package:kliq/features/auth/presentation/widgets/social_container.dart';
@@ -27,7 +30,16 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   Widget build(BuildContext context) {
     ref.listen(auth.loginControllerProvider, (prev, next) {
       if (next is BaseError) {
-        context.showSnackBar(message: next.failure.reason);
+        context.showSnackBar(message: next.failure.reason.toString());
+      }
+      if (next is BaseSuccess) {
+        context.go(Paths.homeScreenRoute.path);
+        context.showSnackBar(message: "successfully logged in", isError: false);
+      }
+    });
+    ref.listen(auth.socialLoginIn, (prev, next) {
+      if (next is BaseError) {
+        context.showSnackBar(message: next.failure.reason.toString());
       }
       if (next is BaseSuccess) {
         context.go(Paths.homeScreenRoute.path);
@@ -45,19 +57,20 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     //                                       socialAuthType:
     //                                           SocialAuthType.google);
 
-    // ref.listen(
-    //   auth.signUpControllerProvider,
-    //   (prev, next) {
-    //     if (next is BaseError) {
-    //       context.showSnackBar(message: next.failure.reason);
-    //     }
-    //     if (next is BaseSuccess) {
-    //       context.go(Paths.welcomeScreenRoute.path);
-    //       context.showSnackBar(
-    //           message: "account created successfully", isError: false);
-    //     }
-    //   },
-    // );
+    ref.listen(
+      auth.signUpControllerProvider,
+      (prev, next) {
+        if (next is BaseError) {
+          context.showSnackBar(message: next.failure.reason);
+        }
+        if (next is BaseSuccess) {
+          context.go(Paths.welcomeScreenRoute.path);
+          context.showSnackBar(
+              message: "account created successfully", isError: false);
+        }
+      },
+    );
+
     return SafeArea(
       child: Scaffold(
         floatingActionButton: FloatingActionButton(

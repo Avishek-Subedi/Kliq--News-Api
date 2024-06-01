@@ -17,8 +17,8 @@ class FavouriteNewsRepoImpl implements FavouriteNewsRepo {
   Future<void> toggleFav(BuildContext context,
       {required FavouriteNews news}) async {
     try {
-      log('hello from service', name: '01 serv');
       final isFav = await hiveService.getItem(news.uid!);
+      log(isFav.toString());
       if (isFav != null) {
         await hiveService.delete(news.uid!);
         if (context.mounted) {
@@ -35,7 +35,8 @@ class FavouriteNewsRepoImpl implements FavouriteNewsRepo {
         context.showSnackBar(
             message: 'News added to favourites', isError: false);
       }
-    } catch (e) {
+    } catch (e, s) {
+      log(s.toString());
       log(e.toString());
       rethrow;
     }

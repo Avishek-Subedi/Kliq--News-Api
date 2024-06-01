@@ -1,8 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:kliq/app_setup/controller/app_controller.dart';
-import 'package:kliq/features/auth/presentation/login/login_screen.dart';
 import 'package:kliq/features/news/presentation/home_screen.dart';
 
 class AppStateObserver extends ConsumerWidget {
@@ -12,11 +13,18 @@ class AppStateObserver extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // We can implement dynamic routing as per the app state
     final appState = ref.watch(appController);
+    log(appState.toString());
     return appState.map(
-      started: (_) => const Placeholder(),
-      showOnBoarding: (_) => const Placeholder(),
-      authenticated: (_) => const HomeScreen(),
-      unAuthenticated: (_) => const LoginScreen(),
+      started: (state) => const HomeScreen(
+        user: null,
+      ),
+      showOnBoarding: (data) => const HomeScreen(
+        user: null,
+      ),
+      authenticated: (authenticated) => HomeScreen(
+        user: authenticated.data,
+      ),
+      unAuthenticated: (state) => const HomeScreen(user: null),
     );
   }
 }

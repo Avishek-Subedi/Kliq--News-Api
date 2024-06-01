@@ -3,6 +3,9 @@ import 'dart:developer';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive/hive.dart';
+import 'package:kliq/features/auth/controllers/auth_status_provider.dart';
+import 'package:kliq/features/favourite/domain/model/favourite_model.dart';
 import 'package:kliq/features/news/controller/news_controller.dart';
 import 'package:kliq/features/news/domain/model/article_model.dart';
 import 'package:kliq/features/news/presentation/news_detail_screen.dart';
@@ -24,7 +27,10 @@ class _NewsScreenState extends ConsumerState<NewsScreen>
   @override
   void initState() {
     super.initState();
-    ref.read(newsController.notifier).getArticles();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await ref.read(newsController.notifier).getArticles();
+      // var user = ref.read(authStatusProvider).user;
+    });
   }
 
   @override

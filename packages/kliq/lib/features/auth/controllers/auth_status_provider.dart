@@ -20,6 +20,7 @@ class GoRouterRefreshStream extends ChangeNotifier {
     _subscription = stream.asBroadcastStream().listen(
       (user) {
         _isLoggedIn = user != null;
+        _user = user;
         notifyListeners();
       },
     );
@@ -27,6 +28,8 @@ class GoRouterRefreshStream extends ChangeNotifier {
 
   late final StreamSubscription<User?> _subscription;
   bool _isLoggedIn = false;
+  User? _user;
+  User? get user => _user;
   bool get loggedInStatus => _isLoggedIn;
 
   @override

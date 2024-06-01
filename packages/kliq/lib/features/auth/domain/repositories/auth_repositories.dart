@@ -33,5 +33,5 @@ abstract class AuthRepository {
   });
 
   /// [logout] login user with google account
-  // Future<Either<bool, Failure>> logout();
+  Future<Either<Failure, bool>> logout();
 }

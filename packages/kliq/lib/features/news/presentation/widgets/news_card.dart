@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive/hive.dart';
+import 'package:kliq/features/auth/controllers/auth_status_provider.dart';
 import 'package:kliq/features/favourite/domain/model/favourite_model.dart';
 import 'package:kliq/features/news/controller/news_controller.dart';
 import 'package:kliq/features/news/domain/model/article_model.dart';
