@@ -113,7 +113,7 @@ class KliqThemeConfig {
       labelMedium: GoogleFonts.poppins(
         fontSize: 16,
       ),
-      labelLarge: GoogleFonts.poppins(fontSize: 18, color: Colors.white),
+      labelLarge: GoogleFonts.poppins(fontSize: 18, color: Colors.black),
     );
 
     light = ThemeData(
@@ -172,7 +172,7 @@ ColorScheme _lightColorScheme = ColorScheme.light(
   surfaceTint: Color(0xffDCE8F5),
   onSurface: Color.fromARGB(255, 228, 232, 234),
   onSurfaceVariant: Color(0xff757B80),
-  surfaceContainerHighest: Color(0xffdce4e8),
+
   outline: Color(0xff9EA3A6),
   outlineVariant: Colors.white,
   // Inverse & Shadow Colors
@@ -210,7 +210,7 @@ const ColorScheme _darkColorScheme = ColorScheme.dark(
   surfaceTint: Color(0xffDCE8F5),
   onSurface: Color(0xff191C1D),
   onSurfaceVariant: Color(0xff757B80),
-  surfaceContainerHighest: Color(0xffdce4e8),
+
   outline: Color(0xff9EA3A6),
   outlineVariant: Colors.white,
   // Inverse & Shadow Colors

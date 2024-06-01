@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:kliq/features/news/domain/model/article_model.dart';
 import 'package:kliq_components/kliq_componenets.dart';
@@ -17,7 +18,7 @@ class CarouserItemWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: NetworkImage(
+            image: CachedNetworkImageProvider(
               article.imageUrl ?? '',
             ),
           ),

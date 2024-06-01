@@ -20,9 +20,9 @@ class HiveService<T> {
     }
   }
 
-  Future<void> putItems({required String itemKey, required T news}) async {
+  Future<void> putItems({required String itemKey, required T item}) async {
     try {
-      return _box.put(itemKey, news);
+      return _box.put(itemKey, item);
     } catch (e) {
       rethrow;
     }

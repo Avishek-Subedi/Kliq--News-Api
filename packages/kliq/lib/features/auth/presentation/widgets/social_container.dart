@@ -5,11 +5,13 @@ class SocialContainer extends StatelessWidget {
   final String source;
   final double? height;
   final bool isLoading;
+  final String social;
   const SocialContainer({
     super.key,
     required this.source,
-    this.height = 40,
+    this.height = 52,
     this.isLoading = false,
+    required this.social,
   });
 
   @override
@@ -17,7 +19,8 @@ class SocialContainer extends StatelessWidget {
     return Container(
         height: height,
         margin: const EdgeInsets.symmetric(horizontal: 8),
-        width: height,
+        width: screenWidth(context) / 1.5,
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(8),
@@ -29,17 +32,29 @@ class SocialContainer extends StatelessWidget {
                   color: Colors.black.withOpacity(0.55))
             ]),
         child: isLoading
-            ? Padding(
-                padding: const EdgeInsets.all(8),
+            ? Center(
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(
-                      colorScheme(context).surface),
+                      colorScheme(context).primary),
                 ),
               )
-            : Center(
-                child: Picture(
-                source: source,
-                height: 18,
-              )));
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: Picture(
+                      source: source,
+                      height: 18,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Text(
+                    "Sign in with $social",
+                    style: textTheme(context).labelLarge!.copyWith(
+                        color: colorScheme(context).onSecondary,
+                        fontWeight: FontWeight.w400),
+                  )
+                ],
+              ));
   }
 }

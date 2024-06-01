@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kliq/app_setup/controller/base_state.dart';
 import 'package:kliq/app_setup/errors/failure.dart';
@@ -25,13 +26,15 @@ class FavouriteController
       : super(const BaseState<List<FavouriteNews>>.initial());
 
   /// Method to add a favorite news item
-  Future<void> toggleFav({required FavouriteNews news}) async {
+  Future<void> toggleFav(BuildContext context,
+      {required FavouriteNews news}) async {
     try {
       state = const BaseState.loading();
       await favNewsRepo.toggleFav(
+        context,
         news: news,
       );
-
+      getFavourites();
       state = const BaseState<List<FavouriteNews>>.success(data: []);
     } catch (e) {
       state = BaseState.error(Failure.fromException(e));

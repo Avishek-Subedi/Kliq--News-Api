@@ -18,8 +18,10 @@ final class AssetIcons {
 
   String get fb => 'assets/icons-bin/fb.svg.vec';
   String get x => 'assets/icons-bin/x.svg.vec';
+  String get day => 'assets/icons-bin/day.svg.vec';
   String get k => 'assets/icons-bin/k.svg.vec';
   String get chat => 'assets/icons-bin/chat.svg.vec';
+  String get night => 'assets/icons-bin/night.svg.vec';
   String get google => 'assets/icons-bin/google.svg.vec';
 }
 final class AssetNav {

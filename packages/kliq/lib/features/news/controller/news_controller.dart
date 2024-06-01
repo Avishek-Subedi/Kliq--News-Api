@@ -6,8 +6,6 @@ import 'package:kliq/features/news/domain/repo/news_repo.dart';
 
 /// News Controller Provider
 ///
-/// This provider is a `family` provider, which means it takes a parameter
-/// (`search`) to allow dynamic creation of controllers based on the search query.
 final newsController = StateNotifierProvider.autoDispose<NewsController,
     BaseState<ArticleResponse>>((ref) {
   final repo = ref.watch(newsRepoProvider);
@@ -16,8 +14,7 @@ final newsController = StateNotifierProvider.autoDispose<NewsController,
 
 /// News Controller
 ///
-/// A state notifier that manages the state of fetching news articles based on
-/// a search query. It extends `StateNotifier` with a state of type `BaseState<ArticleResponse>`.
+/// A state notifier that manages the state of fetching news articles .
 ///
 /// The state can be:
 /// - `initial`: Indicates the initial state before any action is taken.
@@ -27,11 +24,11 @@ final newsController = StateNotifierProvider.autoDispose<NewsController,
 class NewsController extends StateNotifier<BaseState<ArticleResponse>> {
   /// Constructor for NewsController
   ///
-  /// Initializes the controller with the provided `newsRepo` and `searchQuery`.
+
   /// It immediately triggers the `getArticles` method to fetch articles.
   ///
   /// - `newsRepo`: The repository used to fetch news articles.
-  /// - `searchQuery`: The search query used to filter articles.
+
   NewsController(this.newsRepo)
       : super(
           const BaseState<ArticleResponse>.initial(),
@@ -43,7 +40,6 @@ class NewsController extends StateNotifier<BaseState<ArticleResponse>> {
 
   /// Fetch Articles
   ///
-  /// This method fetches articles from the repository based on the `searchQuery`.
   /// It updates the state to `loading` before starting the fetch operation.
   /// Once the fetch operation completes, it updates the state to either `success`
   /// with the fetched data, or `error` with the error message.

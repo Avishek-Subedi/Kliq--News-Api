@@ -6,4 +6,6 @@ import 'package:kliq/features/news/domain/model/article_model.dart';
 abstract class NewsRepo {
   /// Gets list of articles
   Future<Either<Failure, ArticleResponse>> getArticles();
+  /// GeSearch article
+  Future<Either<Failure, ArticleResponse>> searchArticles({required String search});
 }

@@ -1,8 +1,10 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 import 'package:kliq/app_setup/errors/failure.dart';
-import 'package:kliq/features/news/data/data_source/remote/article_client.dart';
+import 'package:kliq/features/news/data/data_source/remote/news_client.dart';
 import 'package:kliq/features/news/domain/model/article_model.dart';
 import 'package:kliq/features/news/domain/repo/news_repo.dart';
 
@@ -39,7 +41,31 @@ class NewsRepoImpl implements NewsRepo {
   Future<Either<Failure, ArticleResponse>> getArticles() async {
     try {
       // Attempt to fetch articles using the news service
-      final articles = await newsService.getArticles();
+      final articles = await newsService
+          .getArticles('pub_45179759f6a3d407a213a1234a26744b65a72');
+      // Return the articles wrapped in a Right (indicating success)
+      return Right(articles);
+    } on DioException catch (e) {
+      // If a DioException occurs, convert it to a Failure and return it
+      return Left(e.toFailure);
+    } catch (e) {
+      // If any other exception occurs, return a generic Failure
+      return Left(Failure(
+        'Something went wrong',
+        FailureType.unknown,
+      ));
+    }
+  }
+
+  /// Search news
+  @override
+  Future<Either<Failure, ArticleResponse>> searchArticles(
+      {required String search}) async {
+    try {
+      // Attempt to fetch articles using the news service
+      final articles = await newsService.searchArticle(
+          'pub_45179759f6a3d407a213a1234a26744b65a72', search);
+
       // Return the articles wrapped in a Right (indicating success)
       return Right(articles);
     } on DioException catch (e) {

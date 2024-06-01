@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kliq/features/favourite/controller/favourite_controller.dart';
 import 'package:kliq/features/news/domain/model/article_model.dart';
+import 'package:kliq/features/news/presentation/news_detail_screen.dart';
 import 'package:kliq/features/news/presentation/widgets/news_card.dart';
 
 class FavouriteScreen extends ConsumerStatefulWidget {
@@ -43,22 +44,48 @@ class _FavouriteScreenState extends ConsumerState<FavouriteScreen> {
             child: Text('No items'),
           );
         }
-        return ListView.builder(
-          itemCount: favouriteNewsList.length,
-          shrinkWrap: true,
-          itemBuilder: (context, index) {
-            final news = favouriteNewsList[index];
-            return NewsCard(
-              article: Article(
-                articleId: news.uid!,
-                title: news.title!,
-                link: news.url!,
-                imageUrl: news.imageUrl,
-                description: news.description,
-              ),
-              onTap: () {},
-            );
-          },
+        return SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: Column(
+              children: [
+                AppBar(
+                  automaticallyImplyLeading: false,
+                  title: const Text(
+                    'Favourites',
+                  ),
+                ),
+                ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: favouriteNewsList.length,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    final news = favouriteNewsList[index];
+                    return NewsCard(
+                      article: Article(
+                        articleId: news.uid!,
+                        title: news.title!,
+                        link: news.url!,
+                        imageUrl: news.imageUrl,
+                        description: news.description,
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => NewsDetailScreen(
+                              url: news.url ?? '',
+                              title: news.title ?? '',
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
         );
       },
     );

@@ -166,7 +166,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                       height: screenHeight(context) * 0.09,
                     ),
                     Text(
-                      'or signup with',
+                      'or',
                       style: textTheme(context).bodySmall?.copyWith(
                           color: colorScheme(context).surface, fontSize: 12),
                     ),
@@ -190,6 +190,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                                 },
                                 child: SocialContainer(
                                   source: Asset.icons.google,
+                                  social: 'Google',
                                   isLoading: socialAuthState is BaseLoading
                                       ? true
                                       : false,
@@ -197,25 +198,25 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                               );
                             },
                           ),
-                          InkWell(
-                            onTap: () {
-                              context.showSnackBar(
-                                  message:
-                                      "Facebook login is not implemented yet.");
-                            },
-                            child: SocialContainer(
-                              source: Asset.icons.fb,
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              context.showSnackBar(
-                                  message: "X login is not implemented yet.");
-                            },
-                            child: SocialContainer(
-                              source: Asset.icons.x,
-                            ),
-                          ),
+                          // InkWell(
+                          //   onTap: () {
+                          //     context.showSnackBar(
+                          //         message:
+                          //             "Facebook login is not implemented yet.");
+                          //   },
+                          //   child: SocialContainer(
+                          //     source: Asset.icons.fb,
+                          //   ),
+                          // ),
+                          // InkWell(
+                          //   onTap: () {
+                          //     context.showSnackBar(
+                          //         message: "X login is not implemented yet.");
+                          //   },
+                          //   child: SocialContainer(
+                          //     source: Asset.icons.x,
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),

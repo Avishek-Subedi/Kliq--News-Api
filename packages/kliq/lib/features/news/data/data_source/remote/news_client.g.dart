@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'article_client.dart';
+part of 'news_client.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -13,8 +13,7 @@ class _NewsService implements NewsService {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??=
-        'https://newsdata.io/api/1/latest?apikey=pub_45179759f6a3d407a213a1234a26744b65a72';
+    baseUrl ??= 'https://newsdata.io/api/1/';
   }
 
   final Dio _dio;
@@ -22,9 +21,9 @@ class _NewsService implements NewsService {
   String? baseUrl;
 
   @override
-  Future<ArticleResponse> getArticles() async {
+  Future<ArticleResponse> getArticles(String apiKey) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'apikey': apiKey};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio
@@ -35,7 +34,40 @@ class _NewsService implements NewsService {
     )
             .compose(
               _dio.options,
-              '',
+              'latest',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = ArticleResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ArticleResponse> searchArticle(
+    String apiKey,
+    String search,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'apikey': apiKey,
+      r'q': search,
+    };
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ArticleResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'news',
               queryParameters: queryParameters,
               data: _data,
             )

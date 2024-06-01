@@ -10,7 +10,7 @@ class AppInit {
     WidgetsFlutterBinding.ensureInitialized();
     await Hive.initFlutter();
     Hive.registerAdapter(FavouriteNewsAdapter());
-    await Hive.openBox(HIVE_FAVOURITE_BOX);
+    await Hive.openBox<FavouriteNews>(HIVE_FAVOURITE_BOX);
     await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform);
   }

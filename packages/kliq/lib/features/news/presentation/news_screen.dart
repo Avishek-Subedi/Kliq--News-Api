@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kliq/features/news/controller/news_controller.dart';
 import 'package:kliq/features/news/domain/model/article_model.dart';
+import 'package:kliq/features/news/presentation/news_detail_screen.dart';
 import 'package:kliq/features/news/presentation/widgets/carousel_item_widget.dart';
 import 'package:kliq/features/news/presentation/widgets/chip_widget.dart';
 import 'package:kliq/features/news/presentation/widgets/news_card.dart';
@@ -18,7 +19,8 @@ class NewsScreen extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _NewsScreenState();
 }
 
-class _NewsScreenState extends ConsumerState<NewsScreen> {
+class _NewsScreenState extends ConsumerState<NewsScreen>
+    with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     super.initState();
@@ -29,12 +31,15 @@ class _NewsScreenState extends ConsumerState<NewsScreen> {
   Widget build(
     BuildContext context,
   ) {
+    super.build(context);
     final newsState = ref.watch(newsController);
     return newsState.maybeWhen(
       orElse: () => const Center(
         child: Text('Something went wrong'),
       ),
-      error: (message) => Text(message.reason),
+      error: (message) => Center(
+        child: Text(message.reason),
+      ),
       loading: () => const Center(
         child: CircularProgressIndicator(),
       ),
@@ -59,6 +64,9 @@ class _NewsScreenState extends ConsumerState<NewsScreen> {
       },
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 class CarouselWidget extends StatelessWidget {
@@ -118,7 +126,9 @@ class _CategoryWidgetsState extends State<CategoryWidgets> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: context.height * .01),
+      margin: EdgeInsets.only(
+        top: context.height * .01,
+      ),
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -154,7 +164,17 @@ class _CategoryWidgetsState extends State<CategoryWidgets> {
               itemCount: widget.article.length,
               itemBuilder: (context, index) {
                 return NewsCard(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NewsDetailScreen(
+                          url: widget.article[index].sourceUrl ?? '',
+                          title: widget.article[index].title,
+                        ),
+                      ),
+                    );
+                  },
                   article: widget.article[index],
                 );
               },

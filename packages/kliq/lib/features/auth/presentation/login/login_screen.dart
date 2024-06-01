@@ -25,15 +25,25 @@ final _formKey = GlobalKey<FormState>();
 class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
-    // ref.listen(auth.loginControllerProvider, (prev, next) {
-    //   if (next is BaseError) {
-    //     context.showSnackBar(message: next.failure.reason);
-    //   }
-    //   if (next is BaseSuccess) {
-    //     context.go(Paths.welcomeScreenRoute.path);
-    //     context.showSnackBar(message: "successfully logged in", isError: false);
-    //   }
-    // });
+    ref.listen(auth.loginControllerProvider, (prev, next) {
+      if (next is BaseError) {
+        context.showSnackBar(message: next.failure.reason);
+      }
+      if (next is BaseSuccess) {
+        context.go(Paths.homeScreenRoute.path);
+        context.showSnackBar(message: "successfully logged in", isError: false);
+      }
+    });
+
+    // final socialState = ref
+    //     .read(auth.loginControllerProvider.notifier)
+    //     .loginWithSocialAuth(socialAuthType: SocialAuthType.google);
+
+    // ref
+    //                                   .read(auth.socialLoginIn.notifier)
+    //                                   .loginWithSocialAuth(
+    //                                       socialAuthType:
+    //                                           SocialAuthType.google);
 
     // ref.listen(
     //   auth.signUpControllerProvider,
@@ -102,6 +112,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               controller: _emailController,
                               validator: (value) =>
                                   FormValidator.emailValidator(value!),
+                              isLoginScreen: true,
                             ),
                             const SizedBox(
                               height: 15,
@@ -116,30 +127,29 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             KliqTextField(
                               controller: _passwordController,
                               isPassword: true,
-
+                              isLoginScreen: true,
                               onPressed: () {},
-
-                              // validator: (value) =>
-                              //     FormValidator.passwordValidator(value!),
-                            ),
-                            TextFormField(
-                              style: const TextStyle(
-                                fontSize: 11,
-                                fontWeight: FontWeight.w100,
-                              ),
                               validator: (value) =>
                                   FormValidator.passwordValidator(value!),
-                              decoration: const InputDecoration(
-                                isDense: true,
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    style: BorderStyle.solid,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                              cursorColor: Colors.white,
                             ),
+                            // TextFormField(
+                            //   style: const TextStyle(
+                            //     fontSize: 11,
+                            //     fontWeight: FontWeight.w100,
+                            //   ),
+                            //   validator: (value) =>
+                            //       FormValidator.passwordValidator(value!),
+                            //   decoration: const InputDecoration(
+                            //     isDense: true,
+                            //     focusedBorder: UnderlineInputBorder(
+                            //       borderSide: BorderSide(
+                            //         style: BorderStyle.solid,
+                            //         color: Colors.white,
+                            //       ),
+                            //     ),
+                            //   ),
+                            //   cursorColor: Colors.white,
+                            // ),
                           ],
                         ),
                       )
@@ -174,7 +184,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       height: screenHeight(context) * 0.09,
                     ),
                     Text(
-                      'or login with',
+                      'or',
                       style: textTheme(context).bodySmall?.copyWith(
                           color: colorScheme(context).onSecondary,
                           fontSize: 12),
@@ -199,6 +209,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                 },
                                 child: SocialContainer(
                                   source: Asset.icons.google,
+                                  social: 'Google',
                                   isLoading: socialAuthState is BaseLoading
                                       ? true
                                       : false,
@@ -206,25 +217,25 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               );
                             },
                           ),
-                          InkWell(
-                            onTap: () {
-                              context.showSnackBar(
-                                  message:
-                                      "Facebook login is not implemented yet.");
-                            },
-                            child: SocialContainer(
-                              source: Asset.icons.fb,
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              context.showSnackBar(
-                                  message: "X login is not implemented yet.");
-                            },
-                            child: SocialContainer(
-                              source: Asset.icons.x,
-                            ),
-                          ),
+                          // InkWell(
+                          //   onTap: () {
+                          //     context.showSnackBar(
+                          //         message:
+                          //             "Facebook login is not implemented yet.");
+                          //   },
+                          //   child: SocialContainer(
+                          //     source: Asset.icons.fb,
+                          //   ),
+                          // ),
+                          // InkWell(
+                          //   onTap: () {
+                          //     context.showSnackBar(
+                          //         message: "X login is not implemented yet.");
+                          //   },
+                          //   child: SocialContainer(
+                          //     source: Asset.icons.x,
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),
