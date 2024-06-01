@@ -11,6 +11,8 @@ class AppInit {
     await Hive.initFlutter();
     Hive.registerAdapter(FavouriteNewsAdapter());
     await Hive.openBox<FavouriteNews>(HIVE_FAVOURITE_BOX);
+    await Hive.openBox<dynamic>("loginDetails");
+
     await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform);
   }

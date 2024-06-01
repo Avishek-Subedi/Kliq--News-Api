@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kliq/app_setup/controller/theme_notifier.dart';
 import 'package:kliq/config/route/router.dart';
 import 'package:kliq/core/providers/locale_provider.dart';
 import 'package:kliq_resources/kliq_resources.dart';
@@ -10,6 +11,7 @@ class KliqApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedString = ref.watch(languageProvider);
+    final theme = ref.watch(themeProvider);
 
     const localization = KliqLocalization();
 

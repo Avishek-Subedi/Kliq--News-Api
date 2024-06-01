@@ -1,12 +1,7 @@
-import 'dart:developer';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hive/hive.dart';
-import 'package:kliq/features/auth/controllers/auth_status_provider.dart';
-import 'package:kliq/features/favourite/domain/model/favourite_model.dart';
-import 'package:kliq/features/news/controller/news_controller.dart';
+import 'package:kliq/features/news/controller/category_controller.dart';
 import 'package:kliq/features/news/domain/model/article_model.dart';
 import 'package:kliq/features/news/presentation/news_detail_screen.dart';
 import 'package:kliq/features/news/presentation/widgets/carousel_item_widget.dart';
@@ -28,7 +23,7 @@ class _NewsScreenState extends ConsumerState<NewsScreen>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      await ref.read(newsController.notifier).getArticles();
+      await ref.read(categoryController.notifier).getArticles("All");
       // var user = ref.read(authStatusProvider).user;
     });
   }
@@ -38,7 +33,7 @@ class _NewsScreenState extends ConsumerState<NewsScreen>
     BuildContext context,
   ) {
     super.build(context);
-    final newsState = ref.watch(newsController);
+    final newsState = ref.watch(categoryController);
     return newsState.maybeWhen(
       orElse: () => const Center(
         child: Text('Something went wrong'),
@@ -110,15 +105,15 @@ class CarouselWidget extends StatelessWidget {
   }
 }
 
-class CategoryWidgets extends StatefulWidget {
+class CategoryWidgets extends ConsumerStatefulWidget {
   const CategoryWidgets({super.key, required this.article});
   final List<Article> article;
 
   @override
-  State<CategoryWidgets> createState() => _CategoryWidgetsState();
+  ConsumerState<CategoryWidgets> createState() => _CategoryWidgetsState();
 }
 
-class _CategoryWidgetsState extends State<CategoryWidgets> {
+class _CategoryWidgetsState extends ConsumerState<CategoryWidgets> {
   List<String> categoryItems = [
     'All',
     "Politics",
@@ -156,6 +151,11 @@ class _CategoryWidgetsState extends State<CategoryWidgets> {
                         setState(() {});
                       },
                       child: ChipWidget(
+                        onTap: () {
+                          ref
+                              .read(categoryController.notifier)
+                              .getArticles(categoryItems[index]);
+                        },
                         isSelected: selectedCategory == categoryItems[index],
                         chipText: categoryItems[index],
                       ),

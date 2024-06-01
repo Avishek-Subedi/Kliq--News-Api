@@ -49,7 +49,7 @@ class KliqButton extends StatelessWidget {
               color: Colors.black.withOpacity(0.25),
             )
           ],
-          color: Color(0xff1D67DD),
+          color: colorScheme(context).primary,
         ),
         child: Center(
           child: showProgress

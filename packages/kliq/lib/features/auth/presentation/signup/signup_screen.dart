@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kliq/app_setup/controller/base_state.dart';
 import 'package:kliq/config/route/paths.dart';
 import 'package:kliq/core/constants/enums.dart';
 import 'package:kliq/features/auth/controllers/auth_controller.dart' as auth;
-import 'package:kliq/app_setup/controller/base_state.dart';
 import 'package:kliq/features/auth/presentation/login/login_screen.dart';
 import 'package:kliq/features/auth/presentation/widgets/login_header.dart';
 import 'package:kliq/features/auth/presentation/widgets/social_container.dart';
@@ -19,6 +19,7 @@ class SignupScreen extends ConsumerStatefulWidget {
 }
 
 final TextEditingController _emailController = TextEditingController();
+final TextEditingController _fullNameController = TextEditingController();
 final TextEditingController _passwordController = TextEditingController();
 final _formKey = GlobalKey<FormState>();
 
@@ -35,19 +36,19 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
     //   }
     // });
 
-    // ref.listen(
-    //   auth.signUpControllerProvider,
-    //   (prev, next) {
-    //     if (next is BaseError) {
-    //       context.showSnackBar(message: next.failure.reason);
-    //     }
-    //     if (next is BaseSuccess) {
-    //       context.go(Paths.welcomeScreenRoute.path);
-    //       context.showSnackBar(
-    //           message: "account created successfully", isError: false);
-    //     }
-    //   },
-    // );
+    ref.listen(
+      auth.signUpControllerProvider,
+      (prev, next) {
+        if (next is BaseError) {
+          context.showSnackBar(message: next.failure.reason);
+        }
+        if (next is BaseSuccess) {
+          context.go(Paths.loginScreenRoute.path);
+          context.showSnackBar(
+              message: "account created successfully", isError: false);
+        }
+      },
+    );
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -59,7 +60,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
               ClipPath(
                 clipper: CustomClipPathDown(),
                 child: Container(
-                  height: screenHeight(context) / 1.5,
+                  height: screenHeight(context) / 1.35,
                   color: colorScheme(context).surface,
                   padding: EdgeInsets.symmetric(
                       horizontal: 18, vertical: screenHeight(context) / 18),
@@ -81,10 +82,10 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Login",
+                              "Register",
                               style: textTheme(context).bodyLarge!.copyWith(
-                                  fontWeight: FontWeight.w100,
-                                  color: colorScheme(context).onSecondary),
+                                  fontWeight: FontWeight.bold,
+                                  color: colorScheme(context).secondary),
                             ),
                             const SizedBox(height: 7),
                             Text(
@@ -92,22 +93,21 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                               style: textTheme(context).bodyMedium!.copyWith(
                                   fontWeight: FontWeight.w200,
                                   fontSize: 12,
-                                  color: colorScheme(context).onSecondary),
+                                  color: colorScheme(context).secondary),
                             ),
                             KliqTextField(
-                              controller: _passwordController,
-                              isPassword: false,
+                              controller: _fullNameController,
+                              isPassword: true,
                               onPressed: () {},
-
-                              // validator: (value) =>
-                              //     FormValidator.passwordValidator(value!),
+                              validator: (value) =>
+                                  FormValidator.passwordValidator(value!),
                             ),
                             Text(
                               "Email",
                               style: textTheme(context).bodyMedium!.copyWith(
                                   fontWeight: FontWeight.w200,
                                   fontSize: 12,
-                                  color: colorScheme(context).onSecondary),
+                                  color: colorScheme(context).secondary),
                             ),
                             KliqTextField(
                               controller: _emailController,
@@ -122,7 +122,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                               style: textTheme(context).bodyMedium!.copyWith(
                                   fontWeight: FontWeight.w200,
                                   fontSize: 12,
-                                  color: colorScheme(context).onSecondary),
+                                  color: colorScheme(context).secondary),
                             ),
                             KliqTextField(
                               controller: _passwordController,
@@ -140,7 +140,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                 ),
               ),
               Positioned(
-                top: screenHeight(context) / 1.89,
+                top: screenHeight(context) / 1.70,
                 child: Column(
                   children: [
                     SizedBox(
@@ -156,14 +156,14 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                               label: "Register",
                               showProgress:
                                   authState0 is BaseLoading ? true : false,
-                              ontap: _logIn,
+                              ontap: _signUp,
                             );
                           },
                         ),
                       ),
                     ),
                     SizedBox(
-                      height: screenHeight(context) * 0.09,
+                      height: screenHeight(context) * 0.04,
                     ),
                     Text(
                       'or',
@@ -265,19 +265,18 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
     }
   }
 
-  _logIn() {
-    if (_formKey.currentState!.validate()) {
-      ref.read(auth.loginControllerProvider.notifier).loginWithCreds(
-          email: _emailController.text, password: _passwordController.text);
-      // context.push(Paths.welcomeScreenRoute.path);
-      // context.showSnackBar(message: "successfully logged in", isError: false);
-      // ref.read(auth)
-    }
-  }
+  // _logIn() {
+  //   if (_formKey.currentState!.validate()) {
+  //     ref.read(auth.loginControllerProvider.notifier).loginWithCreds(
+  //         email: _emailController.text, password: _passwordController.text);
+  //     // context.push(Paths.welcomeScreenRoute.path);
+  //     // context.showSnackBar(message: "successfully logged in", isError: false);
+  //     // ref.read(auth)
+  //   }
+  // }
 }
 
 ////
 ///
 ///
-
 

@@ -8,4 +8,6 @@ abstract class NewsRepo {
   Future<Either<Failure, ArticleResponse>> getArticles();
   /// GeSearch article
   Future<Either<Failure, ArticleResponse>> searchArticles({required String search});
+  /// category filter
+  Future<Either<Failure, ArticleResponse>> filterByCategory({required String category});
 }

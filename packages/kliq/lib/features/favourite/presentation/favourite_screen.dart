@@ -7,6 +7,7 @@ import 'package:kliq/features/favourite/domain/model/favourite_model.dart';
 import 'package:kliq/features/news/domain/model/article_model.dart';
 import 'package:kliq/features/news/presentation/news_detail_screen.dart';
 import 'package:kliq/features/news/presentation/widgets/news_card.dart';
+import 'package:kliq_components/kliq_componenets.dart';
 
 class FavouriteScreen extends ConsumerStatefulWidget {
   const FavouriteScreen({super.key});
@@ -43,8 +44,11 @@ class _FavouriteScreenState extends ConsumerState<FavouriteScreen> {
       success: (successState) {
         final favouriteNewsList = successState;
         if (favouriteNewsList!.isEmpty) {
-          return const Center(
-            child: Text('No items'),
+          return Center(
+            child: Text(
+              'No items',
+              style: textTheme(context).bodyLarge,
+            ),
           );
         }
         return SingleChildScrollView(

@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:kliq/app_setup/controller/base_state.dart';
+import 'package:kliq/app_setup/local_database/hive/hive_service.dart';
 import 'package:kliq/core/constants/enums.dart';
 import 'package:kliq/features/auth/domain/models/user_model.dart';
 import 'package:kliq/features/auth/domain/repositories/auth_repositories.dart';
@@ -56,7 +56,12 @@ class AuthController<T> extends StateNotifier<BaseState> {
         await authRepository.loginWithCreds(email: email, password: password);
     state = response.fold(
       (error) => BaseState.error(error),
-      (success) => BaseState<UserModel>.success(data: success),
+      (success) {
+        HiveService("loginDetails")
+            .putItems(itemKey: "email", item: success.email);
+
+        return BaseState<UserModel>.success(data: success);
+      },
     );
   }
 

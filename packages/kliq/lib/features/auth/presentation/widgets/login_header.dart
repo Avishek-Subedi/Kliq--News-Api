@@ -20,7 +20,7 @@ class LoginHeader extends StatelessWidget {
           colorFilter: ColorFilter.mode(
               isLoginScreen
                   ? colorScheme(context).surface
-                  : colorScheme(context).onSecondary,
+                  : colorScheme(context).secondary,
               BlendMode.srcATop),
           height: screenHeight(context) / 15,
         ),
@@ -30,7 +30,7 @@ class LoginHeader extends StatelessWidget {
           style: textTheme(context).bodyMedium?.copyWith(
               color: isLoginScreen
                   ? colorScheme(context).surface
-                  : colorScheme(context).onSecondary,
+                  : colorScheme(context).secondary,
               fontSize: 12),
         ),
       ],

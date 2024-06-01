@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:kliq_components/kliq_componenets.dart';
 
 extension SnackbarExtension on BuildContext {
   void showSnackBar(
-      {required String message, bool isError = true, bool showIcon = false}) {
+      {required String message, bool isError = true, bool showIcon = true}) {
     ScaffoldMessenger.of(this).showSnackBar(
       SnackBar(
         behavior: SnackBarBehavior.floating,
         elevation: 15,
-        margin: EdgeInsets.symmetric(horizontal: this.width * .05),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
@@ -24,6 +22,7 @@ extension SnackbarExtension on BuildContext {
                     color: Colors.white,
                   )
                 : const SizedBox(),
+            const SizedBox(width: 10),
             Flexible(
               child: Text(
                 message,
@@ -37,7 +36,7 @@ extension SnackbarExtension on BuildContext {
             ),
           ],
         ),
-        backgroundColor: Colors.black,
+        backgroundColor: isError ? Colors.red : Colors.green,
         duration: const Duration(seconds: 1),
       ),
     );

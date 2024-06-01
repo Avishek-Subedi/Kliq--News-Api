@@ -51,7 +51,7 @@ class SocialContainer extends StatelessWidget {
                   Text(
                     "Sign in with $social",
                     style: textTheme(context).labelLarge!.copyWith(
-                        color: colorScheme(context).onSecondary,
+                        color: colorScheme(context).secondary,
                         fontWeight: FontWeight.w400),
                   )
                 ],

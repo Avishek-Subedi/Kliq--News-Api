@@ -6,31 +6,36 @@ class ChipWidget extends StatelessWidget {
     super.key,
     required this.chipText,
     this.isSelected = false,
+    required this.onTap,
   });
 
   final String chipText;
   bool isSelected;
+  void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      padding: const EdgeInsets.symmetric(
-        horizontal: 12,
-        vertical: 4,
-      ),
-      decoration: BoxDecoration(
-        color: isSelected ? Colors.black : Colors.white,
-        borderRadius: BorderRadius.circular(
-          16,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        alignment: Alignment.center,
+        padding: const EdgeInsets.symmetric(
+          horizontal: 12,
+          vertical: 4,
         ),
-      ),
-      child: Text(
-        chipText,
-        style: context.textTheme.bodyMedium?.copyWith(
-          fontSize: 12,
-          fontWeight: FontWeight.bold,
-          color: isSelected ? Colors.white : Colors.black,
+        decoration: BoxDecoration(
+          color: isSelected ? Colors.black : Colors.white,
+          borderRadius: BorderRadius.circular(
+            16,
+          ),
+        ),
+        child: Text(
+          chipText,
+          style: context.textTheme.bodyMedium?.copyWith(
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+            color: isSelected ? Colors.white : Colors.black,
+          ),
         ),
       ),
     );

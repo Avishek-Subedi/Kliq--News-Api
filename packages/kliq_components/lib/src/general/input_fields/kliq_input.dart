@@ -31,65 +31,58 @@ class _KliqTextFieldState extends State<KliqTextField> {
     final Color cursorColor = textColor;
     final Color onSecondaryColor = Theme.of(context).colorScheme.onSecondary;
 
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: borderColor),
-        borderRadius: BorderRadius.circular(8.0),
-      ),
-      child: TextFormField(
-        style: Theme.of(context).textTheme.bodySmall!.copyWith(
-            color: widget.isLoginScreen ? cursorColor : onSecondaryColor,
-            fontSize: 18,
-            fontWeight: FontWeight.normal),
-        controller: widget.controller,
-        validator: widget.validator,
-        obscureText: widget.isPassword,
-        onTap: widget.onPressed,
-        cursorColor: cursorColor,
-        decoration: InputDecoration(
-          isDense: true,
-          contentPadding:
-              EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: borderColor,
-              style: BorderStyle.solid,
-            ),
-            borderRadius: BorderRadius.circular(8.0),
+    return TextFormField(
+      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+          color: widget.isLoginScreen ? cursorColor : onSecondaryColor,
+          fontSize: 18,
+          fontWeight: FontWeight.normal),
+      controller: widget.controller,
+      validator: widget.validator,
+      obscureText: widget.isPassword,
+      onTap: widget.onPressed,
+      cursorColor: cursorColor,
+      decoration: InputDecoration(
+        isDense: true,
+        contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: borderColor,
+            style: BorderStyle.solid,
           ),
-          focusedErrorBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: borderColor,
-              style: BorderStyle.solid,
-            ),
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          border: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: borderColor,
-              style: BorderStyle.solid,
-            ),
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: borderColor,
-              style: BorderStyle.solid,
-            ),
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          errorBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: borderColor,
-              style: BorderStyle.solid,
-            ),
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          errorStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: onSecondaryColor,
-                fontSize: 8,
-              ),
+          borderRadius: BorderRadius.circular(8.0),
         ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: borderColor,
+            style: BorderStyle.solid,
+          ),
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: borderColor,
+            style: BorderStyle.solid,
+          ),
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: borderColor,
+            style: BorderStyle.solid,
+          ),
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: borderColor,
+            style: BorderStyle.solid,
+          ),
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        errorStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: onSecondaryColor,
+              fontSize: 8,
+            ),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kliq/config/route/paths.dart';
+import 'package:kliq_components/kliq_componenets.dart';
 
 class LogoutAlertDialogue {
   static Future<bool?> showAlert(
@@ -22,7 +23,9 @@ class LogoutAlertDialogue {
               foregroundColor: Colors.red,
             ),
             child: const Text('Confirm'),
-            onPressed: () => Navigator.pop(context, true),
+            onPressed: () {
+              Navigator.pop(context, true);
+            },
           ),
           TextButton(
             child: const Text('Cancel'),
@@ -44,13 +47,19 @@ class LogoutAlertDialogue {
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
-        content: const Text('You need to login first'),
+        content: Text(
+          'You need to login first',
+          style: textTheme(context).bodyLarge?.copyWith(
+              color: colorScheme(context).secondary,
+              fontSize: 16,
+              fontWeight: FontWeight.w400),
+        ),
         actions: <Widget>[
           TextButton(
             style: TextButton.styleFrom(
               foregroundColor: Colors.red,
             ),
-            child: const Text('cancle'),
+            child: const Text('Cancel'),
             onPressed: () => Navigator.pop(context, true),
           ),
           TextButton(

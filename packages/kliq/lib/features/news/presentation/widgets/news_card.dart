@@ -26,7 +26,7 @@ class NewsCard extends ConsumerWidget {
         onTap: onTap,
         child: Card(
           elevation: 6,
-          color: Colors.white,
+          color: colorScheme(context).surface,
           child: Container(
             padding: const EdgeInsets.all(6.0),
             decoration: BoxDecoration(
@@ -63,7 +63,7 @@ class NewsCard extends ConsumerWidget {
                         style: textTheme(context).bodyLarge!.copyWith(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
-                              color: colorScheme(context).onSecondary,
+                              color: colorScheme(context).secondary,
                             ),
                       ),
                       Text(
@@ -72,7 +72,7 @@ class NewsCard extends ConsumerWidget {
                         maxLines: 3,
                         style: textTheme(context).bodySmall!.copyWith(
                               fontSize: 12,
-                              color: colorScheme(context).onSecondary,
+                              color: colorScheme(context).secondary,
                             ),
                       ),
                       Text(
@@ -81,7 +81,7 @@ class NewsCard extends ConsumerWidget {
                         style: textTheme(context).bodySmall!.copyWith(
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
-                              color: colorScheme(context).onSecondary,
+                              color: colorScheme(context).secondary,
                             ),
                       )
                     ],

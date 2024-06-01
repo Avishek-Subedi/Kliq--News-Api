@@ -1,15 +1,13 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kliq/app_setup/controller/app_state.dart';
+import 'package:kliq/app_setup/controller/base_state.dart';
 import 'package:kliq/config/route/paths.dart';
 import 'package:kliq/core/constants/enums.dart';
 import 'package:kliq/features/auth/controllers/auth_controller.dart' as auth;
-import 'package:kliq/app_setup/controller/base_state.dart';
-import 'package:kliq/features/auth/controllers/auth_status_provider.dart';
 import 'package:kliq/features/auth/presentation/signup/signup_screen.dart';
 import 'package:kliq/features/auth/presentation/widgets/login_header.dart';
+import 'package:kliq/features/auth/presentation/widgets/skip_button.dart';
 import 'package:kliq/features/auth/presentation/widgets/social_container.dart';
 import 'package:kliq_components/kliq_componenets.dart';
 import 'package:kliq_resources/kliq_resources.dart';
@@ -73,12 +71,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
     return SafeArea(
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            // context.push(Paths.signupScreenRoute.path);
-            context.push(Paths.homeScreenRoute.path);
-          },
-        ),
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         body: SizedBox(
@@ -88,7 +80,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               ClipPath(
                 clipper: CustomClipPathDown(),
                 child: Container(
-                  height: screenHeight(context) / 1.5,
+                  height: screenHeight(context) / 1.3,
                   color: colorScheme(context).primary,
                   padding: EdgeInsets.symmetric(
                       horizontal: 18, vertical: screenHeight(context) / 18),
@@ -111,12 +103,15 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           children: [
                             Text(
                               "Login",
-                              style: textTheme(context).bodyLarge!,
+                              style: textTheme(context).bodyLarge!.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: colorScheme(context).surface),
                             ),
                             const SizedBox(height: 32),
                             Text(
                               "Email",
                               style: textTheme(context).bodyMedium!.copyWith(
+                                    color: colorScheme(context).surface,
                                     fontWeight: FontWeight.w200,
                                     fontSize: 12,
                                   ),
@@ -135,6 +130,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               style: textTheme(context).bodyMedium!.copyWith(
                                     fontWeight: FontWeight.w200,
                                     fontSize: 12,
+                                    color: colorScheme(context).surface,
                                   ),
                             ),
                             KliqTextField(
@@ -171,7 +167,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 ),
               ),
               Positioned(
-                top: screenHeight(context) / 1.89,
+                top: screenHeight(context) / 1.62,
                 child: Column(
                   children: [
                     SizedBox(
@@ -194,15 +190,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: screenHeight(context) * 0.09,
+                      height: screenHeight(context) * 0.02,
                     ),
                     Text(
                       'or',
                       style: textTheme(context).bodySmall?.copyWith(
-                          color: colorScheme(context).onSecondary,
-                          fontSize: 12),
+                          color: colorScheme(context).secondary, fontSize: 12),
                     ),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 10),
                     SizedBox(
                       width: screenWidth(context),
                       child: Row(
@@ -253,7 +248,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: screenHeight(context) * 0.09,
+                      height: screenHeight(context) * 0.08,
                     ),
                     Row(
                       children: [
@@ -268,7 +263,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           onTap: () {
                             Navigator.of(context)
                                 .push(downAnimation(const SignupScreen()));
-                            print("onto the signupScreen");
                           },
                           child: Text(
                             "Signup",
@@ -281,7 +275,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     )
                   ],
                 ),
-              )
+              ),
+              const SkipButton()
             ],
           ),
         ),
@@ -308,7 +303,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   }
 }
 
+
+
 ////
 ///
 ///
-

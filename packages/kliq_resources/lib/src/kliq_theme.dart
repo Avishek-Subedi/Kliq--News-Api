@@ -145,13 +145,13 @@ class KliqThemeConfig {
 
 ColorScheme _lightColorScheme = ColorScheme.light(
   primary: Color(0xff004CB5),
-  secondary: Color(0xffFF9800),
+  secondary: Color.fromARGB(255, 5, 5, 5),
   tertiary: Color(0xff4CAF50),
   error: Color(0xffB42318),
   // On Colors
   onPrimary: Color(0XFFFFFFFF),
 
-  onSecondary: Color(0xff331F00),
+  onSecondary: Color.fromARGB(255, 5, 5, 5),
   onTertiary: Color(0XFFFFFFFF),
   onError: Color(0xffffffff),
   // Container Colors
@@ -191,7 +191,7 @@ const ColorScheme _darkColorScheme = ColorScheme.dark(
   // On Colors
   onPrimary: Color(0xff00204c),
   onError: Color(0xff912018),
-  onSecondary: Color.fromARGB(188, 43, 41, 41),
+  onSecondary: Color.fromARGB(187, 176, 172, 172),
   onTertiary: Color(0xff214c23),
   // Container Colors
   primaryContainer: Color(0xff002b66),
@@ -201,7 +201,7 @@ const ColorScheme _darkColorScheme = ColorScheme.dark(
   // On Container Colors
   onPrimaryContainer: Color(0xff9dbbe6),
   //Selected container
-  onSecondaryContainer: Color(0xffE6C89D),
+  onSecondaryContainer: Color.fromARGB(255, 15, 15, 15),
   //UnselectedContainer
   onTertiaryContainer: Color(0xffbce6be),
   onErrorContainer: Color(0xffFEE4E2),
