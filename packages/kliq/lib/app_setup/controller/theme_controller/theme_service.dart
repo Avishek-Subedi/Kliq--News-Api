@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:kliq/app_setup/controller/theme_notifier.dart';
 import 'package:kliq_components/kliq_componenets.dart';
 
 class ThemeSwitch extends ConsumerWidget {
@@ -11,8 +12,10 @@ class ThemeSwitch extends ConsumerWidget {
     return FlutterSwitch(
       height: 32,
       width: screenWidth(context) / 7,
-      value: true,
-      onToggle: (value) async {},
+      value: ref.watch(themeProvider).isDark,
+      onToggle: (value) async {
+        ref.read(themeProvider.notifier).toggle();
+      },
       activeColor: Colors.orange,
       inactiveColor: Colors.black,
       inactiveIcon: const Icon(

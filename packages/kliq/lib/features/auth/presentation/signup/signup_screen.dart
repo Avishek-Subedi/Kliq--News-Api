@@ -98,8 +98,6 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                             KliqTextField(
                               controller: _fullNameController,
                               onPressed: () {},
-                              validator: (value) =>
-                                  FormValidator.passwordValidator(value!),
                             ),
                             Text(
                               "Email",

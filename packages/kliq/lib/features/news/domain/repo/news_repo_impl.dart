@@ -42,7 +42,7 @@ class NewsRepoImpl implements NewsRepo {
     try {
       // Attempt to fetch articles using the news service
       final articles = await newsService
-          .getArticles('pub_45432526381d153a08446f31fe4c49417c08b');
+          .getArticles('pub_45130e2a567a68a5b05743735c98175760a27');
       // Return the articles wrapped in a Right (indicating success)
       return Right(articles);
     } on DioException catch (e) {
@@ -64,7 +64,7 @@ class NewsRepoImpl implements NewsRepo {
     try {
       // Attempt to fetch articles using the news service
       final articles = await newsService.searchArticle(
-          'pub_45432526381d153a08446f31fe4c49417c08b', search);
+          'pub_45130e2a567a68a5b05743735c98175760a27', search);
 
       // Return the articles wrapped in a Right (indicating success)
       return Right(articles);
@@ -79,13 +79,14 @@ class NewsRepoImpl implements NewsRepo {
       ));
     }
   }
-  
+
   @override
-  Future<Either<Failure, ArticleResponse>> filterByCategory({required String category}) async {
+  Future<Either<Failure, ArticleResponse>> filterByCategory(
+      {required String category}) async {
     try {
       // Attempt to fetch articles using the news service
       final articles = await newsService.searchArticle(
-          'pub_45432526381d153a08446f31fe4c49417c08b', category);
+          'pub_45130e2a567a68a5b05743735c98175760a27', category);
 
       // Return the articles wrapped in a Right (indicating success)
       return Right(articles);

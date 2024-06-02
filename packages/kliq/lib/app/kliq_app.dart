@@ -12,21 +12,23 @@ class KliqApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedString = ref.watch(languageProvider);
 
-    final isLightTheme = ref.watch(themeProvider);
+    final isDarkTheme = ref.watch(themeProvider).isDark;
 
     const localization = KliqLocalization();
 
     return KliqTheme(
-        themeMode: ThemeMode.light,
+        themeMode:
+            ref.watch(themeProvider).isDark ? ThemeMode.dark : ThemeMode.light,
         builder: (config) {
           return MaterialApp.router(
-              localizationsDelegates: localization.delegates,
-              supportedLocales: localization.supportedLocales,
-              locale: Locale(selectedString),
-              routerConfig: AppRouter.router,
-              debugShowCheckedModeBanner: false,
-              theme: config.light,
-              darkTheme: config.dark);
+            localizationsDelegates: localization.delegates,
+            supportedLocales: localization.supportedLocales,
+            locale: Locale(selectedString),
+            routerConfig: AppRouter.router,
+            debugShowCheckedModeBanner: false,
+            theme: isDarkTheme ? config.dark : config.light,
+            darkTheme: isDarkTheme ? config.dark : config.light,
+          );
         });
   }
 }

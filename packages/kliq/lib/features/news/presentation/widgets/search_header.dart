@@ -35,6 +35,9 @@ class _SearchHeaderState extends ConsumerState<SearchHeader> {
             readOnly: widget.isHomePage,
             onChanged: widget.onChanged,
             controller: widget.controller ?? TextEditingController(),
+            style: textTheme(context)
+                .bodyMedium
+                ?.copyWith(color: colorScheme(context).secondary, fontSize: 14),
             onTap: () {
               SystemChannels.textInput.invokeMethod('TextInput.hide');
 

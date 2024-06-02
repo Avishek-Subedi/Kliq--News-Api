@@ -183,42 +183,46 @@ ColorScheme _lightColorScheme = ColorScheme.light(
   shadow: Color.fromARGB(255, 226, 224, 224),
 );
 
-const ColorScheme _darkColorScheme = ColorScheme.dark(
-  primary: Color(0xff004cb5),
-  secondary: Color(0xffff9800),
-  tertiary: Color(0xff4caf50),
-  error: Color(0xffd92d20),
+ColorScheme _darkColorScheme = ColorScheme.dark(
+  // Primary Colors
+  primary: Color(0xff8CA9FF),
+  secondary: Color.fromARGB(255, 250, 250, 250),
+  tertiary: Color(0xff6FA75B),
+  error: Color(0xffFF847C),
+
   // On Colors
-  onPrimary: Color(0xff00204c),
-  onError: Color(0xff912018),
-  onSecondary: Color.fromARGB(187, 176, 172, 172),
-  onTertiary: Color(0xff214c23),
+  onPrimary: Color(0xff000000),
+  onSecondary: Color.fromARGB(255, 5, 5, 5),
+  onTertiary: Color(0xffffffff),
+  onError: Color(0xffffffff),
+
   // Container Colors
-  primaryContainer: Color(0xff002b66),
-  secondaryContainer: Color(0xff663d00),
-  tertiaryContainer: Color(0xff2c662f),
-  errorContainer: Color(0xffB42318),
+  primaryContainer: Color(0xff214365),
+  secondaryContainer: Color(0xff7E5F3D),
+  tertiaryContainer: Color(0xff3D7E5F),
+  errorContainer: Color(0xff5A2121),
+
   // On Container Colors
-  onPrimaryContainer: Color(0xff9dbbe6),
-  //Selected container
-  onSecondaryContainer: Color.fromARGB(255, 15, 15, 15),
-  //UnselectedContainer
-  onTertiaryContainer: Color(0xffbce6be),
-  onErrorContainer: Color(0xffFEE4E2),
+  onPrimaryContainer: Color(0xffFFFFFF),
+  onSecondaryContainer: Color(0XFF331f00),
+  onTertiaryContainer: Color(0xffffffff),
+  onErrorContainer: Color(0xffffffff),
+
   // Neutral Colors
-  surface: Color(0xffE3EDF7),
-  surfaceTint: Color(0xffDCE8F5),
-  onSurface: Color(0xff191C1D),
+  surface: Color(0xff2E2E2E),
+  surfaceTint: Color(0xff5C5C5C),
+  onSurface: Color.fromARGB(255, 228, 232, 234),
   onSurfaceVariant: Color(0xff757B80),
-  surfaceContainerHighest: Color(0xffdce4e8),
+  surfaceContainerHighest: Color(0xff464646),
   outline: Color(0xff9EA3A6),
-  outlineVariant: Colors.white,
+  outlineVariant: Color(0xffffffff),
+
   // Inverse & Shadow Colors
-  inverseSurface: Color(0xff2E3032),
-  onInverseSurface: Color(0xffE0EAF6),
+  inverseSurface: Color(0xffF6F8FA),
+  onInverseSurface: Color(0xff2E2E2E),
   inversePrimary: Color(0xff5FD4FD),
   scrim: Colors.black,
-  shadow: Colors.black,
+  shadow: Color.fromARGB(255, 40, 40, 40),
 );
 
 // https://github.com/flutter/flutter/issues/115912
