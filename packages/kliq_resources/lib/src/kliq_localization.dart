@@ -2,8 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-class kliqLocalization {
-  const kliqLocalization();
+class KliqLocalization {
+  const KliqLocalization();
 
   List<Locale> get supportedLocales => AppLocalizations.supportedLocales;
 
@@ -17,6 +17,6 @@ class kliqLocalization {
   }
 }
 
-extension kliqExtension on BuildContext {
+extension KliqExtension on BuildContext {
   AppLocalizations get loc => AppLocalizations.of(this);
 }

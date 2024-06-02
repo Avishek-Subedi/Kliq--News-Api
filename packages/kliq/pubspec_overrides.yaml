@@ -1,0 +1,6 @@
+# melos_managed_dependency_overrides: kliq_components,kliq_resources
+dependency_overrides:
+  kliq_components:
+    path: ../kliq_components
+  kliq_resources:
+    path: ../kliq_resources

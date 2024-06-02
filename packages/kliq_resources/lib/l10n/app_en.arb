@@ -1,5 +1,6 @@
 {
     "appName": "kliq",
-    "description":"Hebrew description"
+    "description":"Hebrew description",
+    "login":"Login"
    
 }

@@ -22,18 +22,16 @@ dev_dependencies:
   vector_graphics_compiler: ^1.1.7
 
 flutter:
-  fonts:
-    - family: rage
-      fonts:
-        - asset: fonts/rage.ttf
   uses-material-design: true
   generate: true
 
   assets:
+    - assets/nav-bin/
+    - assets/social-bin/
     - assets/icons-bin/
 
-    - assets/images-bin/
-    - assets/header-bin/
+  # - assets/images-bin/
+  # - assets/header-bin/
 
-    - assets/footer-bin/
-    - assets/lookup-bin/
+  # - assets/footer-bin/
+  # - assets/lookup-bin/
