@@ -42,11 +42,19 @@ class NewsCard extends ConsumerWidget {
                     height: screenWidth(context) / 4,
                     width: screenWidth(context) / 3.2,
                     child: CachedNetworkImage(
-                      imageUrl: article.imageUrl ?? '',
+                      imageUrl: article.imageUrl ??
+                          'https://picsum.photos/250?image=9',
                       fit: BoxFit.cover,
-                      errorWidget: (_, __, ___) => const Center(
-                        child: Text('Image not found'),
-                      ),
+                      errorWidget: (_, __, ___) => Center(
+                          child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Image not found',
+                          style: textTheme(context).bodyLarge?.copyWith(
+                              color: colorScheme(context).secondary,
+                              fontSize: 14),
+                        ),
+                      )),
                     ),
                   ),
                 ),

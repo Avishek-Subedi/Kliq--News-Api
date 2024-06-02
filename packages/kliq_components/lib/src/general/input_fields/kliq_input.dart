@@ -22,6 +22,14 @@ class KliqTextField extends StatefulWidget {
 }
 
 class _KliqTextFieldState extends State<KliqTextField> {
+  bool _obscureText = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _obscureText = widget.isPassword;
+  }
+
   @override
   Widget build(BuildContext context) {
     final Color textColor = widget.isLoginScreen ? Colors.white : Colors.black;
@@ -38,7 +46,7 @@ class _KliqTextFieldState extends State<KliqTextField> {
           fontWeight: FontWeight.normal),
       controller: widget.controller,
       validator: widget.validator,
-      obscureText: widget.isPassword,
+      obscureText: _obscureText,
       onTap: widget.onPressed,
       cursorColor: cursorColor,
       decoration: InputDecoration(
@@ -83,6 +91,19 @@ class _KliqTextFieldState extends State<KliqTextField> {
               color: onSecondaryColor,
               fontSize: 8,
             ),
+        suffixIcon: widget.isPassword
+            ? IconButton(
+                icon: Icon(
+                  _obscureText ? Icons.visibility_off : Icons.visibility,
+                  color: cursorColor,
+                ),
+                onPressed: () {
+                  setState(() {
+                    _obscureText = !_obscureText;
+                  });
+                },
+              )
+            : null,
       ),
     );
   }

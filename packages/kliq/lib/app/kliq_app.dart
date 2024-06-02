@@ -11,7 +11,8 @@ class KliqApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedString = ref.watch(languageProvider);
-    final theme = ref.watch(themeProvider);
+
+    final isLightTheme = ref.watch(themeProvider);
 
     const localization = KliqLocalization();
 

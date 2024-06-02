@@ -46,19 +46,22 @@ class _NewsScreenState extends ConsumerState<NewsScreen>
       ),
       initial: () => const SizedBox.shrink(),
       success: (data) {
-        return Container(
-          padding: const EdgeInsets.all(12),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                VerticalGap.xl,
-                SearchHeader(),
-                CarouselWidget(articles: data?.results ?? []),
-                VerticalGap.l,
-                CategoryWidgets(article: data?.results ?? []),
-                VerticalGap.l,
-              ],
+        return SafeArea(
+          child: Container(
+            padding: const EdgeInsets.all(12),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  VerticalGap.xl,
+                  SearchHeader(),
+                  VerticalGap.xl,
+                  CarouselWidget(articles: data?.results ?? []),
+                  VerticalGap.l,
+                  CategoryWidgets(article: data?.results ?? []),
+                  VerticalGap.l,
+                ],
+              ),
             ),
           ),
         );
