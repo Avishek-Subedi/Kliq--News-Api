@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:kliq/app_setup/errors/failure.dart';
 import 'package:kliq/features/news/data/data_source/remote/news_client.dart';
@@ -86,7 +87,7 @@ class NewsRepoImpl implements NewsRepo {
     try {
       // Attempt to fetch articles using the news service
       final articles = await newsService.searchArticle(
-          'pub_45130e2a567a68a5b05743735c98175760a27', category);
+          dotenv.env['API_KEY'] ?? '', category);
 
       // Return the articles wrapped in a Right (indicating success)
       return Right(articles);
